@@ -302,6 +302,7 @@ class Shader(HasResources):
             'uav_count': 0,
             'offset': 0,
             'size': 0,
+            'padding': 0,
         }, self.stage, [], [], [], self.extra_header, b"")
 
     def update(self, shpk: any) -> None:
