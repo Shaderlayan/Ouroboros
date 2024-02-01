@@ -1,11 +1,21 @@
-{
+﻿{
   "FileVersion": 3,
-  "Name": "Ouroboros",
+  "Name": "Atramentum Luminis Core",
   "Author": "Nylfae",
-  "Description": "Reverse engineering of some shaders.\n\nThis does nothing on its own, and is only of value to developers.",
-  "Version": "1.0.0",
+  "Description": "\"An enchanted ink that radiates Light, yet is suitable for use on the human body.\"\n\nPlease note that this edition of the mod only contains the framework. Download the complete edition on XMA or Heliosphere if you want pre-made glowing irises and/or asymmetric skin adapters.\n\nThis framework works on all races and genders, and enables including glow information in some textures, using symmetric models with asymmetric textures, and more.\n\nPermissions: You may not sell this framework unmodified, or any unmodified part of it. Other than that, you may do what you want with this framework, including but not limited to studying it, modifying it and making any kind of derivatives (including for commercial purposes). If you want to include this framework unmodified or part of it in a package you're selling, you must make this framework available separately for free, for example by linking to one of its web pages. This framework also comes as-is, without warranty of any kind.",
+  "Version": "3.3.0",
   "Website": "https://github.com/Shaderlayan",
   "ModTags": [
-    "shader"
+    "enabler",
+    "atramentum luminis",
+    "glow",
+    "tattoo",
+    "skin",
+    "iris",
+    "shader",
+    "shpk",
+    "framework",
+    "ink of light",
+    "alum"
   ]
 }

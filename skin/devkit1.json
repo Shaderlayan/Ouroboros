@@ -25,10 +25,6 @@
                 "512408342": {
                     "Label": "Level 3",
                     "Description": "Adds more effects, but requires extra textures."
-                },
-                "3445379053": {
-                    "Label": "Level T",
-                    "Description": "Adds a color table, and effects, requiring extra textures."
                 }
             }
         }
@@ -36,44 +32,14 @@
     "Comment": "Vertex color semantics:\nRed: Muscle slider influence.\nGreen: Diffuse brightness.\nBlue: Specular strength.\nAlpha: \"Opacity\" (only used for the threshold).",
     "Samplers": {
         "207536625": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                {
-                    "Label": "Normal Map",
-                    "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
-                    "DefaultTexture": "chara/common/texture/null_normal.tex"
-                },
-                {
-                    "Label": "Normal Map",
-                    "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Color row index.",
-                    "DefaultTexture": "chara/common/texture/null_normal.tex"
-                }
-            ]
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue, Alpha: Unused.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
         },
         "290653886": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                {
-                    "Label": "Diffuse Map",
-                    "Description": "Red, Green, Blue: Diffuse map.\nAlpha: [ALum] Emissive conversion (inverted).",
-                    "DefaultTexture": "chara/common/texture/white.tex"
-                },
-                {
-                    "Label": "Diffuse Map",
-                    "Description": "Red, Green, Blue: Diffuse map.\nAlpha: [ALum] Diffuse Brightness when Emissive is on.",
-                    "DefaultTexture": "chara/common/texture/white.tex"
-                }
-            ]
+            "Label": "Diffuse Map",
+            "Description": "Red, Green, Blue: Diffuse map.\nAlpha: [ALum] Emissive conversion (inverted).",
+            "DefaultTexture": "chara/common/texture/white.tex"
         },
         "2320401078": {
             "Vary": [ "940355280" ],
@@ -84,41 +50,26 @@
             },
             "Items": [
                 {
-                    "Label": "Multi (Sk, Sp, Li) Map",
+                    "Label": "Multi (SI, Sp, LI) Map",
                     "Description": "Red: Skin influence.\nGreen: Specular strength.\nBlue: Lip influence.\nAlpha: Unused.",
                     "DefaultTexture": "chara/common/texture/skin_m.tex"
                 },
                 {
-                    "Label": "Multi (Sk, Sp, HI, HL) Map",
+                    "Label": "Multi (SI, Sp, HI, HL) Map",
                     "Description": "Red: Skin influence.\nGreen: Specular strength.\nBlue: [ALum] Total hair influence, or unused (see Constants).\nAlpha: [ALum] Hair highlights proportion, or unused (see Constants).",
                     "DefaultTexture": "chara/common/texture/skin_m.tex"
                 },
                 {
-                    "Label": "Multi (Sk, HI, HL) Map",
+                    "Label": "Multi (SI, HI, HL) Map",
                     "Description": "Red: Skin influence.\nGreen: Total hair influence.\nBlue: Hair highlights proportion.\nAlpha: Unused.",
                     "DefaultTexture": "chara/common/texture/skin_m.tex"
                 }
             ]
         },
         "4280632068": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                {
-                    "Label": "[ALum] Effect (Ir, Wt, Mt, Bm) Map",
-                    "Description": "Red: Iridescence.\nGreen: Wetness.\nBlue: Metallic finish.\nAlpha: Legacy bloom.",
-                    "DefaultTexture": "chara/common/texture/transparent.tex"
-                },
-                {
-                    "Label": "[ALum] Effect (Ir, Wt, Em, Bm) Map",
-                    "Description": "Red: Iridescence.\nGreen: Wetness.\nBlue: Emissive Brightness.\nAlpha: Legacy bloom.",
-                    "DefaultTexture": "chara/common/texture/transparent.tex"
-                }
-            ]
+            "Label": "[ALum] Effect (Ir, Wt, Mt, Bm) Map",
+            "Description": "Red: Iridescence.\nGreen: Wetness.\nBlue: Metallic finish.\nAlpha: Legacy bloom.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
         },
         "630648344": {
             "Label": "[ALum] Emissive Map",
@@ -129,34 +80,8 @@
     "Constants": {
         "740963549": null,
         "699138595": null,
-        "1659128399": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                null,
-                [ {
-                    "Type": "Hidden"
-                } ]
-            ]
-        },
-        "906496720": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                null,
-                [ {
-                    "Type": "Hidden"
-                } ]
-            ]
-        },
+        "1659128399": null,
+        "906496720": null,
         "390837838": {
             "Vary": [ "940355280" ],
             "Selectors": {
@@ -171,20 +96,7 @@
                 } ]
             ]
         },
-        "2569562539": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                null,
-                [ {
-                    "Type": "Hidden"
-                } ]
-            ]
-        },
+        "2569562539": null,
         "950420322": null,
         "2274043692": {
             "Vary": [ "940355280" ],
@@ -200,48 +112,22 @@
                 } ]
             ]
         },
-        "778088561": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
+        "778088561": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "Color Set",
+                "Label": "Tile Repeat",
+                "Precision": 2
             },
-            "Items": [
-                [
-                    {
-                        "Offset": 0,
-                        "Length": 1,
-                        "Group": "Color Set",
-                        "Label": "Tile Repeat",
-                        "Precision": 2
-                    },
-                    {
-                        "Offset": 1,
-                        "Length": 1,
-                        "Type": "Hidden"
-                    }
-                ],
-                [ {
-                    "Type": "Hidden"
-                } ]
-            ]
-        },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Type": "Hidden"
+            }
+        ],
         "1465565106": null,
-        "1112929012": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 0,
-                "3445379053": 1
-            },
-            "Items": [
-                null,
-                [ {
-                    "Type": "Hidden"
-                } ]
-            ]
-        },
+        "1112929012": null,
         "3036724004": [ {
             "Type": "Hidden"
         } ],
@@ -302,54 +188,27 @@
                 ]
             }
         ],
-        "2405734609": {
-            "Vary": [ "2638885380" ],
-            "Selectors": {
-                "1770883968": 0,
-                "512408342": 1,
-                "3445379053": 1
+        "2405734609": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Emissive Conversion (well-lit environments)",
+                "Speed": 0.01
             },
-            "Items": [
-                [
-                    {
-                        "Offset": 0,
-                        "Length": 1,
-                        "Group": "[ALum] Emissive (Glow)",
-                        "Label": "Emissive Conversion (well-lit environments)",
-                        "Speed": 0.01
-                    },
-                    {
-                        "Offset": 1,
-                        "Length": 1,
-                        "Group": "[ALum] Emissive (Glow)",
-                        "Label": "Emissive Conversion (dark environments)",
-                        "Speed": 0.01
-                    }
-                ],
-                [
-                    {
-                        "Offset": 0,
-                        "Length": 1,
-                        "Group": "[ALum] Emissive (Glow)",
-                        "Label": "Emissive Strength (well-lit environments)",
-                        "Speed": 0.01
-                    },
-                    {
-                        "Offset": 1,
-                        "Length": 1,
-                        "Group": "[ALum] Emissive (Glow)",
-                        "Label": "Emissive Strength (dark environments)",
-                        "Speed": 0.01
-                    }
-                ]
-            ]
-        },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Emissive Conversion (dark environments)",
+                "Speed": 0.01
+            }
+        ],
         "1090780911": {
             "Vary": [ "2638885380" ],
             "Selectors": {
                 "1770883968": 0,
-                "512408342": 1,
-                "3445379053": 1
+                "512408342": 1
             },
             "Items": [
                 [
@@ -435,14 +294,7 @@
                     },
                     {
                         "Offset": 1,
-                        "Length": 1,
-                        "Group": "[ALum] Iridescence",
-                        "Label": "Hue Skew",
-                        "Speed": 0.01
-                    },
-                    {
-                        "Offset": 2,
-                        "Length": 2,
+                        "Length": 3,
                         "Type": "Hidden"
                     },
                     {

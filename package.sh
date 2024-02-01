@@ -4,24 +4,47 @@ set -e
 
 cd "$(dirname "$0")"
 
-rm -rf build/ouroboros
-rm -f build/ouroboros.pmp
+rm -rf build/alum
+rm -f build/alum.pmp
 
-rm -rf build/mdk
-rm -rf build/mdk.pmp
+rm -rf build/hso
+rm -rf build/hso.pmp
 
-mkdir -p build/ouroboros/shader
-mkdir -p build/mdk/shpk_devkit
+mkdir -p build/alum/shader build/alum/shpk_devkit
+mkdir -p build/hso/shader build/hso/shpk_devkit
 
-INSTALL_DIR="build/ouroboros/shader" DK_INSTALL_DIR="build/mdk/shpk_devkit" ./build.sh
+echo "Building configuration alum1 ..." >&2
+INSTALL_DIR="build/alum/shader" ./build.sh alum1
 
-cp -v penumbra/*.json build/ouroboros
-cp -v penumbra_mdk/*.json build/mdk
+echo "Building configuration alum ..." >&2
+INSTALL_DIR="build/alum/shader" ./build.sh alum
 
-pushd build/ouroboros
-zip -r -9 ../ouroboros.pmp .
+for strength in "" wk sg; do
+    for direction in "" rv; do
+        for rotation in "" cw fl cc; do
+            echo "Building configuration $strength $direction $rotation ..." >&2
+            INSTALL_DIR="build/hso/shader" ./build.sh $strength $direction $rotation
+        done
+    done
+    echo "Building configuration $strength x3 ..." >&2
+    INSTALL_DIR="build/hso/shader" ./build.sh $strength x3
+done
+
+cp -v hair/devkit.json build/alum/shpk_devkit/hair.json
+cp -v iris/devkit.json build/alum/shpk_devkit/iris.json
+cp -v iris/devkit1.json build/alum/shpk_devkit/iris1.json
+cp -v skin/devkit.json build/alum/shpk_devkit/skin.json
+cp -v skin/devkit1.json build/alum/shpk_devkit/skin1.json
+
+cp -v skin/devkit1.json build/hso/shpk_devkit/skin.json
+
+cp -v penumbra/*.json build/alum
+cp -v penumbra_hso/*.json build/hso
+
+pushd build/alum
+zip -r -9 ../alum.pmp .
 popd
 
-pushd build/mdk
-zip -r -9 ../mdk.pmp .
+pushd build/hso
+zip -r -9 ../hso.pmp .
 popd

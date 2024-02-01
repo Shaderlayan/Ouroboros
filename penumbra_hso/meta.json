@@ -1,0 +1,19 @@
+﻿{
+  "FileVersion": 3,
+  "Name": "Hannish scale ointment",
+  "Author": "Nylfae",
+  "Description": "\"An alchemically-created ointment that gives Au Ra scales an iridescent aspect.\"\n\nThis mod works on both Raen and Xaela, on both genders, and it works both on its own and with most of the other skin/scales mods, though it might not look as good on strongly-colored scale mods. Available in 3 intensities and 9 hue positions.\n\nAlso includes functionality from the Atramentum Luminis Textures-only Skin Framework, so that you can have glowing tattoos, scales or nails at the same time.\n\nIf you're using the Atramentum Luminis Textures and Materials Skin Framework, don't use this mod, see the Atramentum Luminis authoring manual's iridescence sections instead for how to replicate its functionality on that framework.\n\nDeprecated: The current form of this mod will eventually be discontinued, and replaced by a set of Au Ra skin materials that depend on Atramentum Luminis to provide the same result.\n\nPermissions: You may not sell this mod unmodified, or any unmodified part of it. Other than that, you may do what you want with this mod, including but not limited to studying it, modifying it and making any kind of derivatives (including for commercial purposes). If you want to include this mod unmodified or part of it in a package you're selling, you must make this mod available separately for free, for example by linking to one of its web pages. This mod also comes as-is, without warranty of any kind.",
+  "Version": "3.3.0",
+  "Website": "https://github.com/Shaderlayan",
+  "ModTags": [
+    "au ra",
+    "raen",
+    "xaela",
+    "scales",
+    "atramentum luminis",
+    "shader",
+    "shpk",
+    "ink of light",
+    "alum"
+  ]
+}

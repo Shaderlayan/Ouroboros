@@ -1,0 +1,279 @@
+﻿{
+  "Name": "Intensity / Hue positions",
+  "Description": "Effect intensity: normal, faint or vibrant ;\nThe first and second hues are applied respectively to the scales facing towards the left and right of the screen ;\nThe third and fourth hue are applied respectively to the scales facing towards the top and bottom of the screen.",
+  "Priority": 0,
+  "Type": "Single",
+  "DefaultSettings": 0,
+  "Options": [
+    {
+      "Name": "Normal / Green-Red / Blue-Yellow",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-rv.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Green-Red / Yellow-Blue",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Red-Green / Blue-Yellow",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Red-Green / Yellow-Blue",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-rv-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Blue-Yellow / Green-Red",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Yellow-Blue / Green-Red",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-rv-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Blue-Yellow / Red-Green",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-rv-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Yellow-Blue / Red-Green",
+      "Description": "Effect intensity: normal ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Normal / Rainbow",
+      "Description": "Effect intensity: normal ;\nScales facing towards the edges of the screen take rapidly varying hues.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-x3.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Green-Red / Blue-Yellow",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-rv.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Green-Red / Yellow-Blue",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Red-Green / Blue-Yellow",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Red-Green / Yellow-Blue",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-rv-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Blue-Yellow / Green-Red",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Yellow-Blue / Green-Red",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-rv-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Blue-Yellow / Red-Green",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-rv-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Yellow-Blue / Red-Green",
+      "Description": "Effect intensity: faint ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Faint / Rainbow",
+      "Description": "Effect intensity: faint ;\nScales facing towards the edges of the screen take rapidly varying hues.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-wk-x3.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Green-Red / Blue-Yellow",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-rv.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Green-Red / Yellow-Blue",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a greenish hue ;\nScales facing towards the right of the screen take a reddish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Red-Green / Blue-Yellow",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a bluish hue ;\nScales facing towards the bottom of the screen take a yellowish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Red-Green / Yellow-Blue",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a reddish hue ;\nScales facing towards the right of the screen take a greenish hue ;\nScales facing towards the top of the screen take a yellowish hue ;\nScales facing towards the bottom of the screen take a bluish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-rv-fl.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Blue-Yellow / Green-Red",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Yellow-Blue / Green-Red",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a greenish hue ;\nScales facing towards the bottom of the screen take a reddish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-rv-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Blue-Yellow / Red-Green",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a bluish hue ;\nScales facing towards the right of the screen take a yellowish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-rv-cw.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Yellow-Blue / Red-Green",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the left of the screen take a yellowish hue ;\nScales facing towards the right of the screen take a bluish hue ;\nScales facing towards the top of the screen take a reddish hue ;\nScales facing towards the bottom of the screen take a greenish hue.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-cc.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Vibrant / Rainbow",
+      "Description": "Effect intensity: vibrant ;\nScales facing towards the edges of the screen take rapidly varying hues.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shpk\\skin-sg-x3.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}

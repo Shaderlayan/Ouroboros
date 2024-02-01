@@ -9,15 +9,36 @@
                     "Label": "0x6E5B8F10 (Face)"
                 }
             }
+        },
+        "2638885380": {
+            "Label": "Atramentum Luminis Semantics",
+            "Values": {
+                "1770883968": {
+                    "Label": "Level 2",
+                    "Description": "Adds effects while keeping the same number of textures as vanilla."
+                },
+                "512408342": {
+                    "Label": "Level 3",
+                    "Description": "Adds more effects, but requires extra textures."
+                },
+                "3445379053": {
+                    "Label": "Level T",
+                    "Description": "Adds a color table, and effects, requiring extra textures."
+                }
+            }
         }
     },
     "Comment": "Vertex color semantics:\nRed, Green, Blue: Color.\nAlpha: Opacity.",
     "Samplers": {
         "207536625": {
-            "Vary": [ "612525193" ],
+            "Vary": [ "612525193", "2638885380" ],
             "Selectors": {
-                "4156069230": 0,
-                "1851494160": 1
+                "3218897390": 0,
+                "914322320": 1,
+                "2860858648": 0,
+                "556283578": 1,
+                "3588637473": 2,
+                "1284062403": 3
             },
             "Items": [
                 {
@@ -29,27 +50,81 @@
                     "Label": "Normal Map",
                     "Description": "Red, Green: Standard Tangent Space Normal Map.\nAlpha: Opacity.",
                     "DefaultTexture": "chara/common/texture/null_normal.tex"
+                },
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard Tangent Space Normal Map.\nBlue: [ALum] Color row index.\nAlpha: Opacity.\n\nAlpha is sampled at UV2.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
+                },
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard Tangent Space Normal Map.\nBlue: [ALum] Color row index.\nAlpha: Opacity.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
                 }
             ]
         },
         "2320401078": {
-            "Vary": [ "612525193" ],
+            "Vary": [ "612525193", "2638885380" ],
             "Selectors": {
-                "4156069230": 0,
-                "1851494160": 1
+                "3218897390": 0,
+                "914322320": 1,
+                "2860858648": 0,
+                "556283578": 1,
+                "3588637473": 2,
+                "1284062403": 3
             },
             "Items": [
                 {
-                    "Label": "Multi (Di, Sp, HL) Map",
-                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: Unused.\nAlpha: Hair Highlights Proportion.\n\nAlpha is sampled at UV2.",
+                    "Label": "Multi (Di, Sp, EC, HL) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: [ALum] Emissive Conversion.\nAlpha: Hair Highlights Proportion.\n\nAlpha is sampled at UV2.",
                     "DefaultTexture": "chara/common/texture/transparent.tex"
                 },
                 {
-                    "Label": "Multi (Di, Sp, RF) Map",
-                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: Unused.\nAlpha: Race Feature Influence.",
+                    "Label": "Multi (Di, Sp, EC, RF) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: [ALum] Emissive Conversion.\nAlpha: Race Feature Influence.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "Multi (Di, Sp, DE, HL) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: [ALum] Diffuse Brightness when Emissive is on.\nAlpha: Hair Highlights Proportion.\n\nAlpha is sampled at UV2.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "Multi (Di, Sp, DE, RF) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: [ALum] Diffuse Brightness when Emissive is on.\nAlpha: Race Feature Influence.",
                     "DefaultTexture": "chara/common/texture/transparent.tex"
                 }
             ]
+        },
+        "4280632068": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                {
+                    "Label": "[ALum] Effect (Ir, Wt, Mt, Bm) Map",
+                    "Description": "Red: Iridescence.\nGreen: Permanent wetness.\nBlue: Metallic finish.\nAlpha: Legacy bloom.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "[ALum] Effect (Ir, Wt, CR, Bm) Map",
+                    "Description": "Red: Iridescence.\nGreen: Permanent wetness.\nBlue: Color row influence.\nAlpha: Legacy bloom.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                }
+            ]
+        },
+        "290653886": {
+            "Label": "[ALum] Diffuse Map",
+            "Description": "Red, Green, Blue: Diffuse map.\nAlpha: Influence of this diffuse map.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
+        },
+        "630648344": {
+            "Label": "[ALum] Emissive Map",
+            "Description": "Red, Green, Blue: Emissive map.\nAlpha: Influence of this emissive map.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
         }
     },
     "Constants": {
@@ -58,14 +133,38 @@
         "1659128399": [ {
             "Type": "Hidden"
         } ],
-        "906496720": null,
+        "906496720": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
         "390837838": [ {
             "Type": "Hidden"
         } ],
-        "2569562539": null,
-        "950420322": [ {
-            "Type": "Hidden"
-        } ],
+        "2569562539": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
+        "950420322": null,
         "2274043692": [ {
             "Type": "Hidden"
         } ],
@@ -80,6 +179,139 @@
             "Type": "Hidden"
         } ],
         "364318261": null,
-        "3042205627": null
+        "3042205627": null,
+        "2405734609": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 1,
+                "3445379053": 1
+            },
+            "Items": [
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Conversion (well-lit environments)",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Conversion (dark environments)",
+                        "Speed": 0.01
+                    }
+                ],
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Strength (well-lit environments)",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Strength (dark environments)",
+                        "Speed": 0.01
+                    }
+                ]
+            ]
+        },
+        "2783821404": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (well-lit environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (dark environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            }
+        ],
+        "1090780911": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 1,
+                "3445379053": 1
+            },
+            "Items": [
+                [
+                    {
+                        "Type": "Hidden"
+                    }
+                ],
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Effect Strength",
+                        "Speed": 0.01,
+                        "Minimum": 0
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Skew",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 2,
+                        "Length": 2,
+                        "Type": "Hidden"
+                    },
+                    {
+                        "Offset": 4,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Normal Z Bias",
+                        "Description": "0.0 is equivalent to HSO's \"Vibrant\" options.\n0.5 is equivalent to HSO's \"Normal\" options.\n1.0 is equivalent to HSO's \"Faint\" options.",
+                        "Speed": 0.01,
+                        "Minimum": 0
+                    },
+                    {
+                        "Offset": 5,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Chroma",
+                        "Description": "0 is grayscale.\n50 is equivalent to HSO.",
+                        "Speed": 1,
+                        "Minimum": 0,
+                        "Precision": 0
+                    },
+                    {
+                        "Offset": 6,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Shift",
+                        "Description": "0 ° gives a reddish hue towards the right of the screen.\nPositive values rotate the effect counterclockwise.",
+                        "Precision": 0,
+                        "Speed": 1,
+                        "Unit": "°"
+                    },
+                    {
+                        "Offset": 7,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Multiplier",
+                        "Type": "Integer"
+                    }
+                ]
+            ]
+        }
     }
 }

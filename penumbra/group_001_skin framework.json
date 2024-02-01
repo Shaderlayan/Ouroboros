@@ -1,0 +1,36 @@
+﻿{
+  "Name": "Skin Framework",
+  "Description": "Enables the following things on the skin (including nails, scleræ, Auri scales):\n- Glow (emissive) ;\n- Iridescence (like Hannish scale ointment) ;\n- Use of asymmetric textures on symmetric models ;\n- [BETA] Perma-wetness ;\n- [BETA] Metallic finish.",
+  "Priority": 0,
+  "Type": "Single",
+  "DefaultSettings": 2,
+  "Options": [
+    {
+      "Name": "None",
+      "Description": "",
+      "Files": {},
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures-only (Legacy, Deprecated)",
+      "Description": "Only enables glow (emissive) on the skin, but only requires editing the textures, and mostly does not support material edits beyond what could be achieved in vanilla.\n\nUse this option if your mod only contains textures, or if it contains materials but the glow doesn't work with the other option.\n\nCreating new mods based on this option is not recommended, as it is likely to be removed in the Atramentum Luminis Dawntrail update.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shader\\skin1.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin1.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures and Materials",
+      "Description": "Enables all the features of Atramentum Luminis on the skin, but requires editing both the textures and the materials.\n\nUse this option if your mod contains both textures and materials.",
+      "Files": {
+        "shader/sm5/shpk/skin.shpk": "shader\\skin.shpk",
+        "penumbra/shpk_devkit/skin.json": "shpk_devkit\\skin.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}

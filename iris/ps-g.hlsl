@@ -13,7 +13,17 @@ float4 main(const PS_Input ps) : SV_TARGET0
     if (1 < g_AlphaThreshold) discard;
 #endif
 
-    const float3 xyz = NORMAL(g_SamplerNormal.Sample(ps.texCoord0).xy) * 0.5 + 0.5;
-    const float w = exp2(g_Shininess / -15);
+    const RemappedTexCoord mainTexCoord = remapTexCoord(ps.texCoord0, ps.normal.w, g_AsymmetryAdapter.x);
+
+#ifdef ALUM_LEVEL_T
+    const float index = g_SamplerIndex.SampleRemapped(mainTexCoord).w;
+    const ColorRow colorRow = g_SamplerTable.Lookup(index);
+    float shininess = colorRow.m_Shininess;
+#else
+    float shininess = g_Shininess;
+#endif
+
+    const float3 xyz = NORMAL(g_SamplerNormal.SampleRemapped(mainTexCoord).xy) * 0.5 + 0.5;
+    const float w = exp2(shininess / -15);
     return float4(xyz, w);
 }

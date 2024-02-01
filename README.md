@@ -1,16 +1,11 @@
-# Ouroboros
+# Atramentum Luminis
 
-Reverse engineering of some shaders of a popular game
+Mod of some shaders of a popular game
 
 ## How to build
 
 ```sh
-./build.sh
-```
-\- or -
-```sh
-./configure.py
-make -j4 # Adjust to the number of parallel compiles you want to run.
+./build.sh alum # Or see script for other possible configurations.
 ```
 
 ## Tools

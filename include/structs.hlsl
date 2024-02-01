@@ -81,7 +81,7 @@ struct PS_Input
     /* v2 */ float2 texCoord0 : TEXCOORD0;
     /* w2 */ float2 texCoord1 : TEXCOORD1;
     /* v3 */ float4 texCoord2 : TEXCOORD2;
-    /* v4 */ float3 normal    : TEXCOORD4;
+    /* v4 */ float4 normal    : TEXCOORD4;
     /* v5 */ float3 tangent   : TEXCOORD5;
     /* v6 */ float3 bitangent : TEXCOORD6;
     /* v7 */ float4 misc      : TEXCOORD7;

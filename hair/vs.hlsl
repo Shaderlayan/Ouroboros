@@ -36,15 +36,17 @@ void main(const VS_Input vs, out PS_Input ps)
 #endif
 
 #if !defined(PASS_G) && !defined(PASS_G_SEMITRANSPARENCY)
-    ps.normal = 0;
+    ps.normal.xyz = 0;
     ps.tangent = 0;
     ps.bitangent = 0;
 #else
-    ps.normal = normalize(XFORM(float4(vs.normal, 0)));
+    ps.normal.xyz = normalize(XFORM(float4(vs.normal, 0)));
     const float4 binormal = vs.binormal * 2 - 1;
     ps.bitangent = normalize(XFORM(float4(binormal.xyz, 0)));
-    ps.tangent = normalize(cross(ps.bitangent, ps.normal) * binormal.w);
+    ps.tangent = normalize(cross(ps.bitangent, ps.normal.xyz) * binormal.w);
 #endif
+
+    ps.normal.w = vs.position.x;
 
     ps.texCoord0 = 0;
     ps.texCoord1 = 0;

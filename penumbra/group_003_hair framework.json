@@ -1,0 +1,26 @@
+﻿{
+  "Name": "Hair Framework",
+  "Description": "Enables the following things on the hair:\n- Glow (emissive) ;\n- Iridescence ;\n- [BETA] Perma-wetness ;\n- [BETA] Metallic finish.",
+  "Priority": 4,
+  "Type": "Single",
+  "DefaultSettings": 1,
+  "Options": [
+    {
+      "Name": "None",
+      "Description": "",
+      "Files": {},
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures and Materials",
+      "Description": "Enables all the features of Atramentum Luminis on the hair, but requires editing both the textures and the materials.\n\nUse this option if your mod contains both textures and materials.",
+      "Files": {
+        "shader/sm5/shpk/hair.shpk": "shader\\hair.shpk",
+        "penumbra/shpk_devkit/hair.json": "shpk_devkit\\hair.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}

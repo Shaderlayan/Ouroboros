@@ -10,7 +10,9 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #endif
 
 #ifdef SUBVIEW_MAIN
-    const float normalSZ = g_SamplerNormal.Sample(ps.texCoord2.xy).z;
+    const RemappedTexCoord mainTexCoord = remapTexCoord(ps.texCoord2.xy, ps.normal.w, g_AsymmetryAdapter.x);
+
+    const float normalSZ = g_SamplerNormal.SampleRemapped(mainTexCoord).z;
     if (normalSZ * ps.color.w < g_AlphaThreshold) discard;
 
     const float euclideanZ = ps.misc.z / ps.misc.w;

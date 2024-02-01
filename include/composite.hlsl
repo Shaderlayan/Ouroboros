@@ -18,6 +18,7 @@ struct CompositeShaderHelper
     float3 lightDiffuseS;
 
     float3 lightDiffuseValue;
+    float lightLevel;
     float3 lightSpecularValue;
 
     float3 diffuseColor;
@@ -25,6 +26,7 @@ struct CompositeShaderHelper
     float3 emissiveColor;
     float specularMask;
     float alpha;
+    float aLumLegacyBloom;
 
     bool AlphaTest()
     {
@@ -128,7 +130,7 @@ struct CompositeShaderHelper
         fresnelValue0 = lerp(fresnelValue0, 1, directionalitySq * directionalitySq);
     }
 
-    void CalculateLightDiffuseSpecular()
+    void BeginCalculateLightDiffuseSpecular()
     {
 #ifdef SHPK_CHARACTER
         const float2 cameraDiffSpec = g_InstanceParameter.m_CameraLight.m_DiffuseSpecular.xy;
@@ -148,13 +150,12 @@ struct CompositeShaderHelper
         lightDiffuseValue = cameraDiffSpec.x * diffDirFactor
             + lightDiffuseS * diffSpecOcclusion.x
             + lightAmbient;
+        lightLevel = luminance(lightDiffuseValue);
 
         const float specDirFactor = saturate(dot(reflection, direction));
         const float3 rimDirection = normalize(float3(g_InstanceParameter.m_CameraLight.m_Rim.y, 0, 0) - incident);
         const float rimAttenuation = 1 - saturate(dot(normal, rimDirection));
         const float rimAttenuation3 = rimAttenuation * rimAttenuation * rimAttenuation;
-        const float fresnelValue0Gray = (fresnelValue0.x + fresnelValue0.y + fresnelValue0.z) / 3;
-        const float fresnelValue0GraySq = fresnelValue0Gray * fresnelValue0Gray;
 
         lightSpecularValue = cameraDiffSpec.y * pow(specDirFactor, shininess)
             + g_SamplerLightSpecular.Sample(screenSpaceTexCoord).xyz * diffSpecOcclusion.y
@@ -166,7 +167,20 @@ struct CompositeShaderHelper
             lightSpecularValue *= pow(glossSpecFactor, shininess);
         }
 #endif
+    }
+
+    void EndCalculateLightDiffuseSpecular()
+    {
+        const float fresnelValue0Gray = (fresnelValue0.x + fresnelValue0.y + fresnelValue0.z) / 3;
+        const float fresnelValue0GraySq = fresnelValue0Gray * fresnelValue0Gray;
+
         lightSpecularValue += lightReflection * fresnelValue0GraySq;
+    }
+
+    void CalculateLightDiffuseSpecular()
+    {
+        BeginCalculateLightDiffuseSpecular();
+        EndCalculateLightDiffuseSpecular();
     }
 
     void ApplyWetness(float wetness)
@@ -213,8 +227,9 @@ struct CompositeShaderHelper
         const float4 bmMax1 = max(float4(bloomNumSq.xy, finalSq.xy), float4(bloomNumSq.z, 0, finalSq.z, 0.001));
         const float2 bmMax2 = max(bmMax1.xz, bmMax1.yw);
         const float bloom = bmMax2.x / bmMax2.y;
+        const float legacyBloom = saturate(lerp(g_LegacyBloom.y, g_LegacyBloom.x, lightLevel) * aLumLegacyBloom);
 
-        return float4(rgb, bloom);
+        return float4(rgb, screen(bloom, legacyBloom));
 #endif
 #ifdef PASS_COMPOSITE_SEMITRANSPARENCY
         return float4(rgb, alpha);

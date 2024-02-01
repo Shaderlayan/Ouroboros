@@ -31,7 +31,22 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #ifdef PASS_G_SEMITRANSPARENCY
     const float w = alpha / g_AlphaThreshold;
 #else
-    float shininess = lerp(g_Shininess, g_SceneParameter.m_Wetness.y, ps.misc.w);
+#if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T)
+    const float4 effectMaskS = g_SamplerEffectMask.Sample(ps.texCoord2.xy);
+    const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
+#else
+    const float wetnessInfluence = ps.misc.w;
+#endif
+
+#ifdef ALUM_LEVEL_T
+    const float index = g_SamplerIndex.Sample(ps.texCoord2.xy).z; /* /!\ NOT w */
+    const ColorRow colorRow = g_SamplerTable.Lookup(index);
+    float shininess = colorRow.m_Shininess;
+#else
+    float shininess = g_Shininess;
+#endif
+
+    shininess = lerp(shininess, g_SceneParameter.m_Wetness.y, wetnessInfluence);
     shininess = lerp(1, shininess, g_UNK_15B70E35 < 0.01 ? 1.0 : 0);
     const float w = exp2(shininess / -15);
 #endif

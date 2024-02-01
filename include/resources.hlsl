@@ -2,9 +2,43 @@
 #include <color-table.hlsl>
 
 #ifndef MATERIAL_PARAMETER_SIZE
-#if defined(SHPK_HAIR) || defined(SHPK_IRIS) || defined(SHPK_SKIN) || defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
+#ifdef SHPK_HAIR
 
-#define MATERIAL_PARAMETER_SIZE 6
+#define MATERIAL_PARAMETER_SIZE 9
+
+#define g_LegacyBloom       (g_MaterialParameter[6].xy)
+#define g_ScaleIridescence1 (g_MaterialParameter[7])
+#define g_ScaleIridescence2 (g_MaterialParameter[8])
+
+#endif
+#ifdef SHPK_IRIS
+
+#define MATERIAL_PARAMETER_SIZE 10
+
+#define g_AsymmetryAdapter  (g_MaterialParameter[6].xy)
+#define g_ScaleIridescence1 (g_MaterialParameter[7])
+#define g_ScaleIridescence2 (g_MaterialParameter[8])
+#define g_LegacyBloom       (g_MaterialParameter[9].xy)
+#define g_OptionRadius      (g_MaterialParameter[9].zw)
+
+#endif
+#ifdef SHPK_SKIN
+
+#define MATERIAL_PARAMETER_SIZE 10
+
+#define g_StdHairInfluence  (g_MaterialParameter[5].w)
+#define g_AsymmetryAdapter  (g_MaterialParameter[6].x)
+#define g_ScaleIridescence1 (g_MaterialParameter[7])
+#define g_ScaleIridescence2 (g_MaterialParameter[8])
+#define g_LegacyBloom       (g_MaterialParameter[9].xy)
+
+#endif
+#if defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
+
+#define MATERIAL_PARAMETER_SIZE 7
+
+#endif
+#if defined(SHPK_HAIR) || defined(SHPK_IRIS) || defined(SHPK_SKIN) || defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
 
 #define g_DiffuseColor         (g_MaterialParameter[0].xyz)
 #define g_AlphaThreshold       (g_MaterialParameter[0].w)
@@ -20,6 +54,8 @@
 #define g_ScatteringLevel      (g_MaterialParameter[5].x)
 #define g_UNK_15B70E35         (g_MaterialParameter[5].y)
 #define g_NormalScale          (g_MaterialParameter[5].z)
+
+#define g_EmissiveRedirect (g_MaterialParameter[6].zw)
 
 #endif
 #endif
@@ -97,13 +133,15 @@ GameSampler2D4 g_SamplerLightDiffuse;
 GameSampler2D4 g_SamplerLightSpecular;
 GameSampler2D4 g_SamplerGBuffer;
 GameSampler2D4 g_SamplerDiffuse;
-GameSampler2D4 g_SamplerNormal;
+GameSampler2D4 g_SamplerEmissive;
+NormalSampler g_SamplerNormal;
 GameSampler2D4 g_SamplerMask;
+GameSampler2D4 g_SamplerEffectMask;
 GameSampler2D4 g_SamplerDecal;
 ColorTable g_SamplerTable;
 GameSampler3D4 g_SamplerTileDiffuse;
 GameSampler3D4 g_SamplerTileNormal;
-GameSampler2D4 g_SamplerIndex;
+NormalSampler g_SamplerIndex;
 GameSampler2D4 g_SamplerCatchlight;
 GameSamplerCube4 g_SamplerReflection;
 GameSampler2D4 g_SamplerOcclusion;

@@ -2,8 +2,43 @@
     "original": "../iris.shpk",
     "defines": ["SHPK_IRIS", "OCCLUSION_FACTOR=0"],
     "packages": {
+        "iris1.shpk": {
+            "targets": ["all1"],
+            "parameters": {
+                "g_AsymmetryAdapter": { "start": "6x", "size": 2 },
+                "g_LegacyBloom": { "start": "7x", "size": 2 },
+                "g_OptionRadius": { "start": "7z", "size": 2 }
+            }
+        },
         "iris.shpk": {
-            "targets": ["all"]
+            "targets": ["all"],
+            "parameters": {
+                "g_AsymmetryAdapter": { "start": "6x", "size": 2 },
+                "g_EmissiveRedirect": { "start": "6z", "size": 2 },
+                "g_ScaleIridescence": { "start": "7x", "size": 8 },
+                "g_LegacyBloom": { "start": "9x", "size": 2 },
+                "g_OptionRadius": { "start": "9z", "size": 2 }
+            },
+            "keys": ["SelectAtramentumLuminisSemantics"],
+            "samplers": {
+                "g_SamplerTable": 1,
+                "g_SamplerIndex": 1
+            }
+        }
+    },
+    "keys": {
+        "SelectAtramentumLuminisSemantics": {
+            "Level2": {
+                "define": "ALUM_LEVEL_2"
+            },
+            "Level3": {
+                "define": "ALUM_LEVEL_3",
+                "suffix": "-lv3"
+            },
+            "LevelT": {
+                "define": "ALUM_LEVEL_T",
+                "suffix": "-lvt"
+            }
         }
     },
     "vertex_shaders": {
@@ -55,19 +90,19 @@
         },
         "ps-g": {
             "source": "ps-g.hlsl",
-            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PASS_G"]
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_G"]
         },
         "ps-gsemi": {
             "source": "ps-g.hlsl",
-            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PASS_G_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY"]
         },
         "ps-composite": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PASS_COMPOSITE"]
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE"]
         },
         "ps-compositesemi": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         },
         "ps-z": {
             "source": "ps-z.hlsl",
@@ -79,19 +114,19 @@
         },
         "ps-g-dither": {
             "source": "ps-g.hlsl",
-            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PASS_G"]
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_G"]
         },
         "ps-gsemi-dither": {
             "source": "ps-g.hlsl",
-            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PASS_G_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY"]
         },
         "ps-composite-dither": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PASS_COMPOSITE"]
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE"]
         },
         "ps-compositesemi-dither": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         },
         "ps-z-dither": {
             "source": "ps-z.hlsl",

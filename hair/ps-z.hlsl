@@ -10,7 +10,11 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #endif
 
 #ifdef SUBVIEW_MAIN
+#ifdef ALUM_LEVEL_T
+    const float alphaS = 1; // Channel stolen for the index map. It is most often white in vanilla anyway.
+#else
     const float alphaS = g_SamplerNormal.Sample(ps.texCoord2.xy).z;
+#endif
 #else
     const float alphaS = g_SamplerNormal.Sample(ps.texCoord2.zw).w;
 #endif

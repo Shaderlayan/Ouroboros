@@ -1,15 +1,94 @@
 {
+    "ShaderKeys": {
+        "2638885380": {
+            "Label": "Atramentum Luminis Semantics",
+            "Values": {
+                "1770883968": {
+                    "Label": "Level 2",
+                    "Description": "Adds effects while keeping the same number of textures as vanilla."
+                },
+                "512408342": {
+                    "Label": "Level 3",
+                    "Description": "Adds more effects, but requires extra textures."
+                },
+                "3445379053": {
+                    "Label": "Level T",
+                    "Description": "Adds a color table, and effects, requiring extra textures."
+                }
+            }
+        }
+    },
     "Comment": "Vertex color semantics:\nRed: Left eye color influence.\nGreen: Right eye color influence.\nBlue: Unused.\nAlpha: \"Opacity\" (only used for the threshold).",
     "Samplers": {
         "2320401078": {
-            "Label": "Multi (Di, Sp) Map",
-            "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue, Alpha: Unused.",
-            "DefaultTexture": "chara/common/texture/transparent.tex"
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                {
+                    "Label": "Multi (Di, Sp, EC) Map",
+                    "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue: Unused.\nAlpha: [ALum] Emissive conversion (inverted).",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "Multi (Di, Sp, Ey, DE) Map",
+                    "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue: Eye color influence.\nAlpha: [ALum] Diffuse Brightness when Emissive is on.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                }
+            ]
         },
         "207536625": {
-            "Label": "Normal Map",
-            "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
-            "DefaultTexture": "chara/common/texture/null_normal.tex"
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
+                },
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Color row index.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
+                }
+            ]
+        },
+        "4280632068": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                {
+                    "Label": "[ALum] Effect (Ir, Bm) Map",
+                    "Description": "Red: Iridescence.\nGreen, Blue: Unused.\nAlpha: Legacy bloom.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "[ALum] Effect (Ir, Em, Bm) Map",
+                    "Description": "Red: Iridescence.\nGreen: Unused.\nBlue: Emissive Brightness.\nAlpha: Legacy bloom.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                }
+            ]
+        },
+        "290653886": {
+            "Label": "[ALum] Diffuse Map",
+            "Description": "Red, Green, Blue: Diffuse map.\nAlpha: Influence of this diffuse map.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
+        },
+        "630648344": {
+            "Label": "[ALum] Emissive Map",
+            "Description": "Red, Green, Blue: Emissive map.\nAlpha: Influence of this emissive map.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
         },
         "4271961042": {
             "Label": "Catchlight Map",
@@ -20,15 +99,52 @@
     "Constants": {
         "740963549": null,
         "699138595": null,
-        "1659128399": null,
-        "906496720": null,
+        "1659128399": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
+        "906496720": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
         "390837838": [ {
             "Type": "Hidden"
         } ],
-        "2569562539": null,
-        "950420322": [ {
-            "Type": "Hidden"
-        } ],
+        "2569562539": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 0,
+                "3445379053": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
+        "950420322": null,
         "2274043692": [ {
             "Type": "Hidden"
         } ],
@@ -47,6 +163,203 @@
         } ],
         "3042205627": [ {
             "Type": "Hidden"
-        } ]
+        } ],
+        "1580908027": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Asymmetry Adapter",
+                "Type": "Enum",
+                "Values": [
+                    {
+                        "Label": "None",
+                        "Value": 0
+                    },
+                    {
+                        "Label": "Sym. model, asym. textures",
+                        "Value": 1
+                    },
+                    {
+                        "Label": "Asym. model, sym. textures",
+                        "Value": -1
+                    }
+                ]
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Catchlight Asymmetry Adapter",
+                "Type": "Enum",
+                "Values": [
+                    {
+                        "Label": "Symmetric catchlight map",
+                        "Value": 0
+                    },
+                    {
+                        "Label": "Asymmetric catchlight map",
+                        "Value": 1
+                    }
+                ]
+            }
+        ],
+        "2405734609": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 1,
+                "3445379053": 1
+            },
+            "Items": [
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Conversion (well-lit environments)",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Conversion (dark environments)",
+                        "Speed": 0.01
+                    }
+                ],
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Strength (well-lit environments)",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Emissive (Glow)",
+                        "Label": "Emissive Strength (dark environments)",
+                        "Speed": 0.01
+                    }
+                ]
+            ]
+        },
+        "2783821404": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (well-lit environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (dark environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            }
+        ],
+        "722329762": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Outer Ring Radius (left eye)",
+                "Description": "Will take the Racial Feature color instead of the Eye color.",
+                "Speed": 0.01,
+                "Factor": 0.5,
+                "Minimum": 0,
+                "Maximum": 1.42
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Outer Ring Radius (right eye)",
+                "Description": "Will take the Racial Feature color instead of the Eye color.",
+                "Speed": 0.01,
+                "Factor": 0.5,
+                "Minimum": 0,
+                "Maximum": 1.42
+            }
+        ],
+        "1090780911": {
+            "Vary": [ "2638885380" ],
+            "Selectors": {
+                "1770883968": 0,
+                "512408342": 1,
+                "3445379053": 1
+            },
+            "Items": [
+                [
+                    {
+                        "Type": "Hidden"
+                    }
+                ],
+                [
+                    {
+                        "Offset": 0,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Effect Strength",
+                        "Speed": 0.01,
+                        "Minimum": 0
+                    },
+                    {
+                        "Offset": 1,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Skew",
+                        "Speed": 0.01
+                    },
+                    {
+                        "Offset": 2,
+                        "Length": 2,
+                        "Type": "Hidden"
+                    },
+                    {
+                        "Offset": 4,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Normal Z Bias",
+                        "Description": "0.0 is equivalent to HSO's \"Vibrant\" options.\n0.5 is equivalent to HSO's \"Normal\" options.\n1.0 is equivalent to HSO's \"Faint\" options.",
+                        "Speed": 0.01,
+                        "Minimum": 0
+                    },
+                    {
+                        "Offset": 5,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Chroma",
+                        "Description": "0 is grayscale.\n50 is equivalent to HSO.",
+                        "Speed": 1,
+                        "Minimum": 0,
+                        "Precision": 0
+                    },
+                    {
+                        "Offset": 6,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Shift",
+                        "Description": "0 ° gives a reddish hue towards the right of the screen.\nPositive values rotate the effect counterclockwise.",
+                        "Precision": 0,
+                        "Speed": 1,
+                        "Unit": "°"
+                    },
+                    {
+                        "Offset": 7,
+                        "Length": 1,
+                        "Group": "[ALum] Iridescence",
+                        "Label": "Hue Multiplier",
+                        "Type": "Integer"
+                    }
+                ]
+            ]
+        }
     }
 }

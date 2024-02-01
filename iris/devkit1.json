@@ -1,0 +1,132 @@
+{
+    "Comment": "Vertex color semantics:\nRed: Left eye color influence.\nGreen: Right eye color influence.\nBlue: Unused.\nAlpha: \"Opacity\" (only used for the threshold).\n\nThis Atramentum Luminis shader package has limited support for material edits. It is recommended to switch to \"Textures and Materials\".",
+    "Samplers": {
+        "2320401078": {
+            "Label": "Multi (Di, Sp, EC) Map",
+            "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue: Unused.\nAlpha: [ALum] Emissive Conversion (inverted).",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
+        },
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
+        },
+        "4271961042": {
+            "Label": "Catchlight Map",
+            "Description": "Red, Green, Blue: Light reflection.\nAlpha: Unused.\n\nSampled at UV that depend on the reflected vector in camera space, regardless of any model UV.",
+            "DefaultTexture": "chara/common/texture/catchlight_1.tex"
+        }
+    },
+    "Constants": {
+        "740963549": null,
+        "699138595": null,
+        "1659128399": null,
+        "906496720": null,
+        "390837838": [ {
+            "Type": "Hidden"
+        } ],
+        "2569562539": null,
+        "950420322": null,
+        "2274043692": [ {
+            "Type": "Hidden"
+        } ],
+        "778088561": [ {
+            "Type": "Hidden"
+        } ],
+        "1465565106": null,
+        "1112929012": [ {
+            "Type": "Hidden"
+        } ],
+        "3036724004": [ {
+            "Type": "Hidden"
+        } ],
+        "364318261": [ {
+            "Type": "Hidden"
+        } ],
+        "3042205627": [ {
+            "Type": "Hidden"
+        } ],
+        "1580908027": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Asymmetry Adapter",
+                "Type": "Enum",
+                "Values": [
+                    {
+                        "Label": "None",
+                        "Value": 0
+                    },
+                    {
+                        "Label": "Sym. model, asym. textures",
+                        "Value": 1
+                    },
+                    {
+                        "Label": "Asym. model, sym. textures",
+                        "Value": -1
+                    }
+                ]
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Catchlight Asymmetry Adapter",
+                "Type": "Enum",
+                "Values": [
+                    {
+                        "Label": "Symmetric catchlight map",
+                        "Value": 0
+                    },
+                    {
+                        "Label": "Asymmetric catchlight map",
+                        "Value": 1
+                    }
+                ]
+            }
+        ],
+        "2783821404": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (well-lit environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (dark environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            }
+        ],
+        "722329762": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Outer Ring Radius (left eye)",
+                "Description": "Will take the Racial Feature color instead of the Eye color.",
+                "Speed": 0.01,
+                "Factor": 0.5,
+                "Minimum": 0,
+                "Maximum": 1.42
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "General Settings",
+                "Label": "[ALum] Outer Ring Radius (right eye)",
+                "Description": "Will take the Racial Feature color instead of the Eye color.",
+                "Speed": 0.01,
+                "Factor": 0.5,
+                "Minimum": 0,
+                "Maximum": 1.42
+            }
+        ]
+    }
+}

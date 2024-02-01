@@ -1,0 +1,36 @@
+﻿{
+  "Name": "Iris Framework",
+  "Description": "Enables the following things on the irises:\n- Glow (emissive) ;\n- Partial heterochromia ;\n- Use of asymmetric textures on symmetric models ;\n- Use of an asymmetric catchlight texture.",
+  "Priority": 1,
+  "Type": "Single",
+  "DefaultSettings": 2,
+  "Options": [
+    {
+      "Name": "None",
+      "Description": "",
+      "Files": {},
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures-only (Legacy, Deprecated)",
+      "Description": "Only enables glow (emissive) on the irises, but only requires editing the textures, and mostly does not support material edits beyond what could be achieved in vanilla.\n\nUse this option if your mod only contains textures, or if it contains materials but the glow doesn't work with the other option.\n\nCreating new mods based on this option is not recommended, as it is likely to be removed in the Atramentum Luminis Dawntrail update.",
+      "Files": {
+        "shader/sm5/shpk/iris.shpk": "shader\\iris1.shpk",
+        "penumbra/shpk_devkit/iris.json": "shpk_devkit\\iris1.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures and Materials",
+      "Description": "Enables all the features of Atramentum Luminis on the irises, but requires editing both the textures and the materials.\n\nUse this option if your mod contains both textures and materials.",
+      "Files": {
+        "shader/sm5/shpk/iris.shpk": "shader\\iris.shpk",
+        "penumbra/shpk_devkit/iris.json": "shpk_devkit\\iris.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}
