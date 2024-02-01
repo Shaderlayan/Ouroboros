@@ -1,0 +1,113 @@
+{
+    "ShaderKeys": {
+        "940355280": {
+            "Label": "Skin Type",
+            "Values": {
+                "4117181732": {
+                    "Label": "Face"
+                },
+                "735790577": {
+                    "Label": "Body"
+                },
+                "1476344676": {
+                    "Label": "Body, with hair",
+                    "Description": "Used notably on Hrothgar."
+                }
+            }
+        }
+    },
+    "Comment": "Vertex color semantics:\nRed: Muscle slider influence.\nGreen: Diffuse brightness.\nBlue: Specular strength.\nAlpha: \"Opacity\" (only used for the threshold).",
+    "Samplers": {
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
+        },
+        "2320401078": {
+            "Vary": [ "940355280" ],
+            "Selectors": {
+                "4117181732": 0,
+                "735790577": 1,
+                "1476344676": 2
+            },
+            "Items": [
+                {
+                    "Label": "Multi (Sk, Sp, Li) Map",
+                    "Description": "Red: Skin influence.\nGreen: Specular strength.\nBlue: Lip influence.\nAlpha: Unused.",
+                    "DefaultTexture": "chara/common/texture/skin_m.tex"
+                },
+                {
+                    "Label": "Multi (Sk, Sp) Map",
+                    "Description": "Red: Skin influence.\nGreen: Specular strength.\nBlue, Alpha: Unused.",
+                    "DefaultTexture": "chara/common/texture/skin_m.tex"
+                },
+                {
+                    "Label": "Multi (Sk, HI, HL) Map",
+                    "Description": "Red: Skin influence.\nGreen: Total hair influence.\nBlue: Hair highlights proportion.\nAlpha: Unused.",
+                    "DefaultTexture": "chara/common/texture/skin_m.tex"
+                }
+            ]
+        }
+    },
+    "Constants": {
+        "740963549": null,
+        "699138595": null,
+        "1659128399": null,
+        "906496720": null,
+        "390837838": {
+            "Vary": [ "940355280" ],
+            "Selectors": {
+                "4117181732": 0,
+                "735790577": 1,
+                "1476344676": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
+        "2569562539": null,
+        "950420322": null,
+        "2274043692": {
+            "Vary": [ "940355280" ],
+            "Selectors": {
+                "4117181732": 0,
+                "735790577": 1,
+                "1476344676": 1
+            },
+            "Items": [
+                null,
+                [ {
+                    "Type": "Hidden"
+                } ]
+            ]
+        },
+        "778088561": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "Color Set",
+                "Label": "Tile Repeat",
+                "Precision": 2
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Type": "Hidden"
+            }
+        ],
+        "1465565106": null,
+        "1112929012": null,
+        "3036724004": [ {
+            "Type": "Hidden"
+        } ],
+        "364318261": [ {
+            "Type": "Hidden"
+        } ],
+        "3042205627": [ {
+            "Type": "Hidden"
+        } ]
+    }
+}

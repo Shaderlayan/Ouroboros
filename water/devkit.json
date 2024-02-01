@@ -1,0 +1,86 @@
+{
+    "Constants": {
+        "704260801": [
+            {
+                "Label": "Whitecap Color",
+                "Type": "Color"
+            }
+        ],
+        "876196728": [
+            {
+                "Label": "Wavelet Distorsion"
+            }
+        ],
+        "3593234462": [
+            {
+                "Label": "Wavelet Scale"
+            }
+        ],
+        "3122018048": [
+            {
+                "Label": "Refraction Color",
+                "Type": "Color"
+            }
+        ],
+        "371521601": [
+            {
+                "Label": "Transparency Distance"
+            }
+        ],
+        "1627729957": [
+            {
+                "Label": "Whitecap Distorsion"
+            }
+        ],
+        "2394542758": [
+            {
+                "Label": "Wave Time"
+            }
+        ],
+        "574239529": [
+            {
+                "Label": "Reflection Power"
+            }
+        ],
+        "3819586170": [
+            {
+                "Label": "Fresnel"
+            }
+        ],
+        "1407730043": [
+            {
+                "Label": "Transparency"
+            }
+        ],
+        "3653987228": [
+            {
+                "Label": "Specular Power"
+            }
+        ],
+        "2750039980": [
+            {
+                "Label": "Whitecap Scale"
+            }
+        ],
+        "1082825950": [
+            {
+                "Label": "Whitecap Speed"
+            }
+        ],
+        "1562817122": [
+            {
+                "Label": "Whitecap Distance"
+            }
+        ],
+        "2615686474": [
+            {
+                "Label": "Wavelet Offset"
+            }
+        ],
+        "1886515549": [
+            {
+                "Label": "Caustics Power"
+            }
+        ]
+    }
+}

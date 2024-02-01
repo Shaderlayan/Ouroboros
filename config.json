@@ -1,0 +1,8 @@
+{
+    "fxc_exec": "fxc",
+    "shpk_tool": "tools/shpk.py",
+    "fxc_flags": "/O3 /nologo",
+    "shader_model": "5_0",
+    "include_paths": ["include"],
+    "main_target": "all"
+}

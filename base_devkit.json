@@ -1,0 +1,148 @@
+{
+    "ShaderKeys": {
+        "4113354501": {
+            "Values": {
+                "3756477356": {
+                    "Label": "0xDFE74BAC (Color)"
+                },
+                "2815623008": {
+                    "Label": "0xA7D2FF60 (Mask)"
+                }
+            }
+        }
+    },
+    "Samplers": {
+        "290653886": {
+            "Label": "Diffuse Map",
+            "DefaultTexture": "chara/common/texture/white.tex"
+        },
+        "630648344": {
+            "Label": "Emissive Map",
+            "DefaultTexture": "chara/common/texture/black.tex"
+        },
+        "2320401078": {
+            "Label": "Multi Map",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
+        },
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
+        },
+        "731504677": {
+            "Label": "Specular Map",
+            "DefaultTexture": "chara/common/texture/white.tex"
+        }
+    },
+    "Constants": {
+        "740963549": [
+            {
+                "Group": "Color Set",
+                "Label": "Diffuse Color",
+                "Type": "Color"
+            }
+        ],
+        "699138595": [
+            {
+                "Group": "General Settings",
+                "Label": "Alpha Threshold/Divisor",
+                "Description": "Between 0 and 1, acts as an alpha threshold.\nBeyond 1, acts as an alpha divisor.",
+                "Minimum": 0,
+                "Speed": 0.01
+            }
+        ],
+        "1659128399": [
+            {
+                "Group": "Color Set",
+                "Label": "Specular Color",
+                "Type": "Color"
+            }
+        ],
+        "906496720": [
+            {
+                "Group": "Color Set",
+                "Label": "Specular Strength",
+                "Precision": 2
+            }
+        ],
+        "390837838": [
+            {
+                "Group": "Color Set",
+                "Label": "Lip Specular Color",
+                "Type": "Color"
+            }
+        ],
+        "2569562539": [
+            {
+                "Group": "Color Set",
+                "Label": "Gloss Strength",
+                "Minimum": 0,
+                "Precision": 1,
+                "RelativeSpeed": 0.025
+            }
+        ],
+        "950420322": [
+            {
+                "Group": "Color Set",
+                "Label": "Emissive Color",
+                "Type": "Color"
+            }
+        ],
+        "2274043692": [
+            {
+                "Group": "Color Set",
+                "Label": "Lip Gloss Strength",
+                "Minimum": 0,
+                "Precision": 1,
+                "RelativeSpeed": 0.025
+            }
+        ],
+        "778088561": [
+            {
+                "Group": "Color Set",
+                "Label": "Tile Repeat",
+                "Precision": 2
+            }
+        ],
+        "1465565106": [
+            {
+                "Group": "General Settings",
+                "Label": "Ambient Occlusion Strength",
+                "Description": "Only applies when the Screen Space Ambient Occlusion graphics setting is set to Strong.",
+                "Speed": 0.01
+            }
+        ],
+        "1112929012": [
+            {
+                "Group": "Color Set",
+                "Label": "Tile Set",
+                "Type": "Integer",
+                "Minimum": 0,
+                "Maximum": 63
+            }
+        ],
+        "3036724004": [
+            {
+                "Group": "Further Constants",
+                "Label": "Scattering Level?",
+                "Description": "This parameter's meaning is not confirmed yet.\n\nPlease contact the author of the Material Development Kit if you find out more about it."
+            }
+        ],
+        "364318261": [
+            {
+                "Group": "General Settings",
+                "Label": "Gloss Offset",
+                "Minimum": 0,
+                "Maximum": 3,
+                "Speed": 0.01
+            }
+        ],
+        "3042205627": [
+            {
+                "Group": "General Settings",
+                "Label": "Normal Scale",
+                "Speed": 0.01
+            }
+        ]
+    }
+}

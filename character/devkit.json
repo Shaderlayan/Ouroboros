@@ -1,0 +1,89 @@
+{
+    "ShaderKeys": {
+        "3054951514": {
+            "Values": {
+                "1556481461": {
+                    "Label": "0x5CC605B5"
+                },
+                "581216959": {
+                    "Label": "0x22A4AABF (Simple)"
+                },
+                "1611594207": {
+                    "Label": "0x600EF9DF (Compatibility)"
+                }
+            }
+        },
+        "3531043187": {
+            "Values": {
+                "1111668802": {
+                    "Label": "0x4242B842 (Off)"
+                },
+                "1480746461": {
+                    "Label": "0x584265DD (Alpha)"
+                },
+                "4083110193": {
+                    "Label": "0xF35F5131"
+                }
+            }
+        },
+        "3367837167": {
+            "Values": {
+                "428675533": {
+                    "Label": "0x198D11CD"
+                },
+                "2687453224": {
+                    "Label": "0xA02F4828 (Mask)"
+                }
+            }
+        }
+    },
+    "Comment": {
+        "Vary": [ "4113354501" ],
+        "Selectors": {
+            "3756477356": 0,
+            "2815623008": 1
+        },
+        "Items": [
+            "Vertex color semantics:\nRed, Green, Blue: Color.",
+            "Vertex color semantics:\nRed: Diffuse Brightness?\nGreen: Specular Strength?\n\nThese are not confirmed yet.\n\nPlease contact the author of the Material Development Kit if you find out more about them."
+        ]
+    },
+    "Constants": {
+        "740963549": [ {
+            "Type": "Hidden"
+        } ],
+        "699138595": null,
+        "1659128399": [ {
+            "Type": "Hidden"
+        } ],
+        "906496720": [ {
+            "Type": "Hidden"
+        } ],
+        "390837838": [ {
+            "Type": "Hidden"
+        } ],
+        "2569562539": [ {
+            "Type": "Hidden"
+        } ],
+        "950420322": [ {
+            "Type": "Hidden"
+        } ],
+        "2274043692": [ {
+            "Type": "Hidden"
+        } ],
+        "778088561": [ {
+            "Type": "Hidden"
+        } ],
+        "1465565106": null,
+        "1112929012": [ {
+            "Type": "Hidden"
+        } ],
+        "3036724004": [ {
+            "Type": "Hidden"
+        } ],
+        "364318261": null,
+        "3042205627": [ {
+            "Type": "Hidden"
+        } ]
+    }
+}

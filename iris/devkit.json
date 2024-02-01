@@ -1,0 +1,52 @@
+{
+    "Comment": "Vertex color semantics:\nRed: Left eye color influence.\nGreen: Right eye color influence.\nBlue: Unused.\nAlpha: \"Opacity\" (only used for the threshold).",
+    "Samplers": {
+        "2320401078": {
+            "Label": "Multi (Di, Sp) Map",
+            "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue, Alpha: Unused.",
+            "DefaultTexture": "chara/common/texture/transparent.tex"
+        },
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue: \"Opacity\" (only used for the threshold).\nAlpha: Unused.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
+        },
+        "4271961042": {
+            "Label": "Catchlight Map",
+            "Description": "Red, Green, Blue: Light reflection.\nAlpha: Unused.\n\nSampled at UV that depend on the reflected vector in camera space, regardless of any model UV.",
+            "DefaultTexture": "chara/common/texture/catchlight_1.tex"
+        }
+    },
+    "Constants": {
+        "740963549": null,
+        "699138595": null,
+        "1659128399": null,
+        "906496720": null,
+        "390837838": [ {
+            "Type": "Hidden"
+        } ],
+        "2569562539": null,
+        "950420322": [ {
+            "Type": "Hidden"
+        } ],
+        "2274043692": [ {
+            "Type": "Hidden"
+        } ],
+        "778088561": [ {
+            "Type": "Hidden"
+        } ],
+        "1465565106": null,
+        "1112929012": [ {
+            "Type": "Hidden"
+        } ],
+        "3036724004": [ {
+            "Type": "Hidden"
+        } ],
+        "364318261": [ {
+            "Type": "Hidden"
+        } ],
+        "3042205627": [ {
+            "Type": "Hidden"
+        } ]
+    }
+}

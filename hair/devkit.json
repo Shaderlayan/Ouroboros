@@ -1,0 +1,85 @@
+{
+    "ShaderKeys": {
+        "612525193": {
+            "Values": {
+                "4156069230": {
+                    "Label": "0xF7B8956E (Hair)"
+                },
+                "1851494160": {
+                    "Label": "0x6E5B8F10 (Face)"
+                }
+            }
+        }
+    },
+    "Comment": "Vertex color semantics:\nRed, Green, Blue: Color.\nAlpha: Opacity.",
+    "Samplers": {
+        "207536625": {
+            "Vary": [ "612525193" ],
+            "Selectors": {
+                "4156069230": 0,
+                "1851494160": 1
+            },
+            "Items": [
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard Tangent Space Normal Map.\nAlpha: Opacity.\n\nAlpha is sampled at UV2.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
+                },
+                {
+                    "Label": "Normal Map",
+                    "Description": "Red, Green: Standard Tangent Space Normal Map.\nAlpha: Opacity.",
+                    "DefaultTexture": "chara/common/texture/null_normal.tex"
+                }
+            ]
+        },
+        "2320401078": {
+            "Vary": [ "612525193" ],
+            "Selectors": {
+                "4156069230": 0,
+                "1851494160": 1
+            },
+            "Items": [
+                {
+                    "Label": "Multi (Di, Sp, HL) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: Unused.\nAlpha: Hair Highlights Proportion.\n\nAlpha is sampled at UV2.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                },
+                {
+                    "Label": "Multi (Di, Sp, RF) Map",
+                    "Description": "Red: Diffuse Brightness.\nGreen: Specular Strength.\nBlue: Unused.\nAlpha: Race Feature Influence.",
+                    "DefaultTexture": "chara/common/texture/transparent.tex"
+                }
+            ]
+        }
+    },
+    "Constants": {
+        "740963549": null,
+        "699138595": null,
+        "1659128399": [ {
+            "Type": "Hidden"
+        } ],
+        "906496720": null,
+        "390837838": [ {
+            "Type": "Hidden"
+        } ],
+        "2569562539": null,
+        "950420322": [ {
+            "Type": "Hidden"
+        } ],
+        "2274043692": [ {
+            "Type": "Hidden"
+        } ],
+        "778088561": [ {
+            "Type": "Hidden"
+        } ],
+        "1465565106": null,
+        "1112929012": [ {
+            "Type": "Hidden"
+        } ],
+        "3036724004": [ {
+            "Type": "Hidden"
+        } ],
+        "364318261": null,
+        "3042205627": null
+    }
+}

@@ -1,0 +1,141 @@
+{
+    "original": "../hair.shpk",
+    "defines": ["SHPK_HAIR", "OCCLUSION_FACTOR=0.5"],
+    "packages": {
+        "hair.shpk": {
+            "targets": ["all"]
+        }
+    },
+    "vertex_shaders": {
+        "vs-z-shadow": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_SHADOW0", "PASS_Z"]
+        },
+        "vs-z-cube": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_CUBE0", "PASS_Z"]
+        },
+        "vs-g": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_G"]
+        },
+        "vs-gsemi": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "vs-composite": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_COMPOSITE", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "vs-z": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_Z"]
+        },
+        "vs-z-skin-shadow": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_SHADOW0", "PASS_Z"]
+        },
+        "vs-z-skin-cube": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_CUBE0", "PASS_Z"]
+        },
+        "vs-g-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_G"]
+        },
+        "vs-gsemi-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "vs-composite-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_COMPOSITE", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "vs-z-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_Z"]
+        }
+    },
+    "pixel_shaders": {
+        "ps-z-shadow-cube": {
+            "source": "ps-z.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_SHADOW0", "SUBVIEW_CUBE0", "PART_HAIR", "PART_FACE", "PASS_Z"]
+        },
+        "ps-g-hair": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_HAIR", "PASS_G"]
+        },
+        "ps-gsemi-hair": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_HAIR", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "ps-composite-hair": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_HAIR", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi-hair": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_HAIR", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-z": {
+            "source": "ps-z.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_HAIR", "PART_FACE", "PASS_Z"]
+        },
+        "ps-z-shadow-cube-dither": {
+            "source": "ps-z.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_SHADOW0", "SUBVIEW_CUBE0", "PART_HAIR", "PART_FACE", "PASS_Z"]
+        },
+        "ps-g-hair-dither": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_HAIR", "PASS_G"]
+        },
+        "ps-gsemi-hair-dither": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_HAIR", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "ps-composite-hair-dither": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_HAIR", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi-hair-dither": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_HAIR", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-z-dither": {
+            "source": "ps-z.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_HAIR", "PART_FACE", "PASS_Z"]
+        },
+        "ps-g-face": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_FACE", "PASS_G"]
+        },
+        "ps-gsemi-face": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_FACE", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "ps-composite-face": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_FACE", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi-face": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_MAIN", "PART_FACE", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-g-face-dither": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_FACE", "PASS_G"]
+        },
+        "ps-gsemi-face-dither": {
+            "source": "ps-g.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_FACE", "PASS_G_SEMITRANSPARENCY"]
+        },
+        "ps-composite-face-dither": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_FACE", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi-face-dither": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_MAIN", "PART_FACE", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        }
+    }
+}
