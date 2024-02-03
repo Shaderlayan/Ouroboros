@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -18,10 +18,10 @@ INSTALL_DIR="build/ouroboros/shader" DK_INSTALL_DIR="build/mdk/shpk_devkit" ./bu
 cp -v penumbra/*.json build/ouroboros
 cp -v penumbra_mdk/*.json build/mdk
 
-pushd build/ouroboros
+cd build/ouroboros
 zip -r -9 ../ouroboros.pmp .
-popd
+cd -
 
-pushd build/mdk
+cd build/mdk
 zip -r -9 ../mdk.pmp .
-popd
+cd -
