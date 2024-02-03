@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -41,10 +41,10 @@ cp -v skin/devkit1.json build/hso/shpk_devkit/skin.json
 cp -v penumbra/*.json build/alum
 cp -v penumbra_hso/*.json build/hso
 
-pushd build/alum
+cd build/alum
 zip -r -9 ../alum.pmp .
-popd
+cd -
 
-pushd build/hso
+cd build/hso
 zip -r -9 ../hso.pmp .
-popd
+cd -
