@@ -61,10 +61,12 @@ cbuffer g_JointMatrixArray
     row_major float3x4 g_JointMatrixArray[64];
 }
 
+#ifdef HAS_INSTANCE_PARAMETER
 cbuffer g_InstanceParameter
 {
     InstanceParameter g_InstanceParameter;
 }
+#endif
 
 cbuffer g_SceneParameter
 {
