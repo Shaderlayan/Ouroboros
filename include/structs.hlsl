@@ -176,11 +176,24 @@ struct PS_ModelSpecificParameters
     float4 ViewportPosition;
 };
 
+#if defined(SHPK_3DUI)
+#define HAS_PARAMETER
 struct Parameter
 {
     float4 renderTarget;
     float4 viewport;
 };
+#endif
+
+#if defined(SHPK_LIGHTSHAFT)
+#define HAS_PARAMETER
+typedef float4 Parameter[2];
+#endif
+
+#if defined(SHPK_VERTICALFOG)
+#define HAS_PARAMETER
+typedef float4 Parameter[3];
+#endif
 
 struct SceneParameter
 {
