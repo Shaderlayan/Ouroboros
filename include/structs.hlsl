@@ -1,6 +1,20 @@
-struct MaterialParameterDynamic
+struct CameraLight
 {
-    float4 m_EmissiveColor;
+    float4 m_DiffuseSpecular;
+    float4 m_Rim;
+};
+
+struct CameraParameter
+{
+    row_major float3x4 m_ViewMatrix;
+    row_major float3x4 m_InverseViewMatrix;
+    row_major float4x4 m_ViewProjectionMatrix;
+    row_major float4x4 m_InverseViewProjectionMatrix;
+    row_major float4x4 m_InverseProjectionMatrix;
+    row_major float4x4 m_ProjectionMatrix;
+    row_major float4x4 m_MainViewToProjectionMatrix;
+    float3 m_EyePosition;
+    float3 m_LookAtVector;
 };
 
 struct CommonParameter
@@ -24,31 +38,17 @@ struct CustomizeParameter
     float3 m_OptionColor;
 };
 
-struct CameraParameter
-{
-    row_major float3x4 m_ViewMatrix;
-    row_major float3x4 m_InverseViewMatrix;
-    row_major float4x4 m_ViewProjectionMatrix;
-    row_major float4x4 m_InverseViewProjectionMatrix;
-    row_major float4x4 m_InverseProjectionMatrix;
-    row_major float4x4 m_ProjectionMatrix;
-    row_major float4x4 m_MainViewToProjectionMatrix;
-    float3 m_EyePosition;
-    float3 m_LookAtVector;
-};
-
-struct CameraLight
-{
-    float4 m_DiffuseSpecular;
-    float4 m_Rim;
-};
-
 struct InstanceParameter
 {
     float4 m_MulColor;
     float4 m_EnvParameter;
     CameraLight m_CameraLight;
     float4 m_Wetness;
+};
+
+struct MaterialParameterDynamic
+{
+    float4 m_EmissiveColor;
 };
 
 struct ModelParameter
