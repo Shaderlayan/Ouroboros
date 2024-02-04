@@ -28,7 +28,9 @@ jobs:
           image: extern9111/shader-factory:latest
           options: '-v ${{ github.workspace }}:/target'
           docker_network: none
-          run: /usr/local/bin/gosu wineuser /target/package.sh
+          run: |-
+            chown -R wineuser:wineuser /target
+            /usr/local/bin/gosu wineuser /target/package.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v4.3.0
         with:
