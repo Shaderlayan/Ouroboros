@@ -152,6 +152,10 @@ class HasResources:
     def has_uav_name(self, uav_name: bytes) -> bool:
         return self.get_uav_by_name(uav_name) is not None
 
+def strip_ext(name):
+    pos = name.rfind('.')
+    return name if pos < 0 else name[:pos]
+
 def add_section(sections: dict, name: str, section: list[str]) -> None:
     while len(section) > 0 and len(section[0]) <= 3:
         section = section[1:]
@@ -216,7 +220,7 @@ INPUT_FLAGS = {
 }
 
 def parse_resource_bindings(fxc_dumpbin_output: str, expected_shader_model: int, expected_shader_stage: str) -> any:
-    lines = fxc_dumpbin_output.stdout.split('\n')
+    lines = fxc_dumpbin_output.split('\n')
     instructions = [line for line in lines if not line.startswith('//') and len(line) > 0]
     shader_model = instructions[0].split('_')
     shader_model_major = int(shader_model[1])
@@ -354,8 +358,12 @@ class Shader(HasResources):
         for uav in self.uavs:
             uav.update(shpk)
 
-    def update_resources(self, shpk: any, new_shader_path: str) -> None:
-        raw_disasm = subprocess.run([FXC, '/nologo', '/dumpbin', new_shader_path], capture_output=True, text=True, check=True)
+    def update_resources(self, shpk: any, new_shader_path: str, use_pre_disasm: bool) -> None:
+        if use_pre_disasm and os.path.isfile(strip_ext(new_shader_path) + '.S'):
+            with open(strip_ext(new_shader_path) + '.S', 'rt') as f:
+                raw_disasm = f.read()
+        else:
+            raw_disasm = subprocess.run([FXC, '/nologo', '/dumpbin', new_shader_path], capture_output=True, text=True, check=True).stdout
         (bindings, inputs) = parse_resource_bindings(raw_disasm, 5 if shpk.file_header.dxmagic == b'DX11' else 3, self.stage)
         if shpk.file_header.dxmagic == b'DX11':
             samplers = {}

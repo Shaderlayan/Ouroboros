@@ -166,6 +166,7 @@ endif
             print('\t\t%s \\' % (' '.join(deps),), file=f)
         print('\t\t%s' % (' '.join(pkg_deps[-1]),), file=f)
         print('\t%s update $< $@ \\' % (global_config['shpk_tool'],), file=f)
+        print('\t\twith pre-disasm \\', file=f)
         for args in pkg_args[:-1]:
             print('\t\t%s \\' % (' '.join(args),), file=f)
         print('\t\t%s' % (' '.join(pkg_args[-1]),), file=f)
@@ -177,6 +178,7 @@ endif
             *(' /I%s' % (dir,) for dir in global_config['include_paths']),
             *(' /D%s' % (define,) for define in blob_config['defines']),
         ])), file=f)
+        print('\t%s /dumpbin %s $@ > %s' % (global_config['fxc_exec'], global_config['fxc_flags'], strip_ext(blob) + '.S'), file=f)
         print(file=f)
     print('clean:', file=f)
     for dir in package_configs:
