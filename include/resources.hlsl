@@ -9,11 +9,6 @@ cbuffer g_MaterialParameter
 }
 #endif
 
-cbuffer g_MaterialParameterDynamic
-{
-    MaterialParameterDynamic g_MaterialParameterDynamic;
-}
-
 cbuffer g_CommonParameter
 {
     CommonParameter g_CommonParameter;
@@ -46,6 +41,16 @@ cbuffer g_InstanceParameter
 }
 #endif
 
+cbuffer g_ModelParameter
+{
+    ModelParameter g_ModelParameter;
+}
+
+cbuffer g_MaterialParameterDynamic
+{
+    MaterialParameterDynamic g_MaterialParameterDynamic;
+}
+
 cbuffer g_SceneParameter
 {
     SceneParameter g_SceneParameter;
@@ -64,11 +69,6 @@ cbuffer g_DecalColor
 cbuffer g_AmbientParam
 {
     float4 g_AmbientParam[6];
-}
-
-cbuffer g_ModelParameter
-{
-    ModelParameter g_ModelParameter;
 }
 
 GameSampler2D4 g_SamplerViewPosition;
