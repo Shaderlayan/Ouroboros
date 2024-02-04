@@ -29,7 +29,7 @@ jobs:
           options: '-v ${{ github.workspace }}:/target'
           docker_network: none
           run: |-
-            chmod ugo+w,o+t /target
+            find /target \( -name '.*' \! -name . -prune \) -o -type d -exec chmod ugo+w,o+t {} \;
             /usr/local/bin/gosu wineuser /target/package.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
