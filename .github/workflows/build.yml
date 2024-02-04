@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Decrypt Assets
@@ -29,10 +29,10 @@ jobs:
           options: '-v ${{ github.workspace }}:/target'
           docker_network: none
           run: |-
-            chown -R wineuser:wineuser /target
+            chmod ugo+w,o+t /target
             /usr/local/bin/gosu wineuser /target/package.sh
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4.3.0
+        uses: actions/upload-artifact@v4
         with:
           path: 'build/*.pmp'
           compression-level: 0
