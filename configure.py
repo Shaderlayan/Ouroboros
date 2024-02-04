@@ -174,11 +174,10 @@ endif
     for (blob, blob_config) in blobs.items():
         print('%s: %s %s' % (blob, blob_config['source'], ' '.join(source_deps[strip_ext(blob_config['source'])])), file=f)
         print('\t@$(ENSURE_TARGET_DIR)', file=f)
-        print('\t%s /T %s %s%s $< /Fo $@' % (global_config['fxc_exec'], blob_config['target'], global_config['fxc_flags'], ''.join([
+        print('\t%s /T %s %s%s $< /Fo $@ /Fc %s' % (global_config['fxc_exec'], blob_config['target'], global_config['fxc_flags'], ''.join([
             *(' /I%s' % (dir,) for dir in global_config['include_paths']),
             *(' /D%s' % (define,) for define in blob_config['defines']),
-        ])), file=f)
-        print('\t%s /dumpbin %s $@ > %s' % (global_config['fxc_exec'], global_config['fxc_flags'], strip_ext(blob) + '.S'), file=f)
+        ]), strip_ext(blob) + '.S'), file=f)
         print(file=f)
     print('clean:', file=f)
     for dir in package_configs:
