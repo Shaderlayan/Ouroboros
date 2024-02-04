@@ -4,11 +4,14 @@ set -e
 
 cd "$(dirname "$0")"
 
+ALUM_NAME="$(jq --raw-output '.Name + " v" + .Version' < penumbra/meta.json)"
+HSO_NAME="$(jq --raw-output '.Name + " v" + .Version' < penumbra_hso/meta.json)"
+
 rm -rf build/alum
-rm -f build/alum.pmp
+rm -f "build/${ALUM_NAME}.pmp"
 
 rm -rf build/hso
-rm -rf build/hso.pmp
+rm -rf "build/${HSO_NAME}.pmp"
 
 mkdir -p build/alum/shader build/alum/shpk_devkit
 mkdir -p build/hso/shader build/hso/shpk_devkit
@@ -42,9 +45,9 @@ cp -v penumbra/*.json build/alum
 cp -v penumbra_hso/*.json build/hso
 
 cd build/alum
-zip -r -9 ../alum.pmp .
+zip -r -9 "../${ALUM_NAME}.pmp" .
 cd -
 
 cd build/hso
-zip -r -9 ../hso.pmp .
+zip -r -9 "../${HSO_NAME}.pmp" .
 cd -

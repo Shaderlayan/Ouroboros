@@ -1,0 +1,38 @@
+name: Build
+
+on:
+  push:
+    branches: '*'
+    tags-ignore: '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - name: Decrypt Assets
+        env:
+          ASSET_PASSWORD: '${{ secrets.ASSET_PASSWORD }}'
+        shell: bash
+        run: |-
+          shopt -s globstar
+          for asset in **/*.gpg; do
+            gpg --quiet --batch --yes --decrypt --passphrase="$ASSET_PASSWORD" --output "${asset%.gpg}" "$asset"
+          done
+      - name: Build and Package
+        uses: addnab/docker-run-action@v3
+        with:
+          image: extern9111/shader-factory:latest
+          options: '-v ${{ github.workspace }}:/target'
+          docker_network: none
+          run: |-
+            chmod ugo+w,o+t /target
+            /usr/local/bin/gosu wineuser /target/package.sh
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          path: 'build/*.pmp'
+          compression-level: 0

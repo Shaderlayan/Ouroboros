@@ -142,11 +142,16 @@ match verb:
         if len(extra_args) % 2 != 1:
             usage()
         output_path = extra_args[0]
+        with_flags = set()
         update_global_resources = False
         for i in range(1, len(extra_args), 2):
             shader_id = extra_args[i]
             new_shader_path = extra_args[i + 1]
             match shader_id:
+                case 'with':
+                    with_flags.add(new_shader_path)
+                case 'without':
+                    with_flags.remove(new_shader_path)
                 case 'mp+':
                     shader_pack.mat_params.append(parse_mat_param(new_shader_path))
                     update_global_resources = True
@@ -179,7 +184,7 @@ match verb:
                 case _:
                     shader = get_shader(shader_pack, shader_id)
                     shader.blob = read_file_bytes(new_shader_path)
-                    shader.update_resources(shader_pack, new_shader_path)
+                    shader.update_resources(shader_pack, new_shader_path, 'pre-disasm' in with_flags)
                     update_global_resources = True
         if update_global_resources:
             shader_pack.update_resources()
