@@ -86,9 +86,7 @@ fi
     [ -n "$DEF_IRI_THETA_SCALE" ] && echo "#define IRI_THETA_SCALE $DEF_IRI_THETA_SCALE"
 } > include/config.hlsl
 
-if ! [ -f Makefile ]; then
-    ./configure.py
-fi
+./configure.py
 
 CONCURRENCY="$(getconf _NPROCESSORS_ONLN)"
 if [ -z "$CONCURRENCY" ]; then
