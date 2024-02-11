@@ -341,11 +341,8 @@ GameSampler2D4 g_SamplerDiffuse;
 GameSampler2D4 g_SamplerEmissive;
 NormalSampler g_SamplerNormal;
 GameSampler2D4 g_SamplerMask;
-<<<<<<< HEAD
 GameSampler2D4 g_SamplerEffectMask;
-=======
 GameSampler2D4 g_SamplerSpecular;
->>>>>>> main
 GameSampler2D4 g_SamplerDecal;
 ColorTable g_SamplerTable;
 GameSampler3D4 g_SamplerTileDiffuse;
