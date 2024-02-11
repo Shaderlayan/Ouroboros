@@ -84,7 +84,7 @@ fi
     [ -n "$DEF_IRI_RHO" ] && echo "#define IRI_RHO $DEF_IRI_RHO"
     [ -n "$DEF_IRI_THETA_XPOS" ] && echo "#define IRI_THETA_XPOS $DEF_IRI_THETA_XPOS"
     [ -n "$DEF_IRI_THETA_SCALE" ] && echo "#define IRI_THETA_SCALE $DEF_IRI_THETA_SCALE"
-} > include/config.hlsl
+} > include/config.hlsli
 
 ./configure.py
 

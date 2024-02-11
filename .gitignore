@@ -1,4 +1,4 @@
-/include/config.hlsl
+/include/config.hlsli
 /build/
 /Makefile
 __pycache__/

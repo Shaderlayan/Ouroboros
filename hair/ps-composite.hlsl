@@ -1,9 +1,9 @@
-#include <config.hlsl>
-#include <structs.hlsl>
-#include <resources.hlsl>
-#include <functions.hlsl>
-#include <iridescence.hlsl>
-#include <composite.hlsl>
+#include <config.hlsli>
+#include <structs.hlsli>
+#include <resources.hlsli>
+#include <functions.hlsli>
+#include <iridescence.hlsli>
+#include <composite.hlsli>
 
 float4 main(const PS_Input ps) : SV_TARGET0
 {

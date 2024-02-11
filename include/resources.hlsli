@@ -1,6 +1,6 @@
-#include <samplers.hlsl>
-#include <color-table.hlsl>
-#include <mtrl-parameters.hlsl>
+#include <samplers.hlsli>
+#include <color-table.hlsli>
+#include <mtrl-parameters.hlsli>
 
 #ifdef MATERIAL_PARAMETER_SIZE
 cbuffer g_MaterialParameter
