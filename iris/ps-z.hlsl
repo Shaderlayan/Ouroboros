@@ -1,6 +1,6 @@
-#include <structs.hlsl>
-#include <resources.hlsl>
-#include <functions.hlsl>
+#include <structs.hlsli>
+#include <resources.hlsli>
+#include <functions.hlsli>
 
 float4 main(const PS_Input ps) : SV_TARGET0
 {

@@ -1,6 +1,6 @@
-#include <structs.hlsl>
-#include <resources.hlsl>
-#include <functions.hlsl>
+#include <structs.hlsli>
+#include <resources.hlsli>
+#include <functions.hlsli>
 
 void main(const VS_Input vs, out PS_Input ps)
 {
