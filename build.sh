@@ -4,9 +4,7 @@ set -e
 
 cd "$(dirname "$0")"
 
-if ! [ -f Makefile ]; then
-    ./configure.py
-fi
+./configure.py
 
 CONCURRENCY="$(getconf _NPROCESSORS_ONLN)"
 if [ -z "$CONCURRENCY" ]; then
