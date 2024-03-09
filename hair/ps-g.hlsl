@@ -24,9 +24,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float alpha = ps.color.w * alphaS;
     if (alpha < alphaThreshold) discard;
 
-    const float2 normalXY = normalS.xy - 0.5;
-    const float normalZ = sqrt(max(0, 0.25 - dot(normalXY, normalXY)));
-    const float3 normalRaw = normalize(float3(normalXY * g_NormalScale, normalZ));
+    const float3 normalRaw = autoNormal(normalS.xy, g_NormalScale);
     const float3 xyz = NORMAL(normalRaw) * 0.5 + 0.5;
 #ifdef PASS_G_SEMITRANSPARENCY
     const float w = alpha / g_AlphaThreshold;

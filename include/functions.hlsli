@@ -15,11 +15,12 @@ float3 skin(const float4 vec, const float4 blendWeight, const int4 blendIndices)
 // like pow() but without warning X3571
 #define POW(f, e) exp2(log2((f)) * (e))
 
-float3 autoNormal(const float2 normalSample)
+float3 autoNormal(const float2 normalSample, const float normalScale = 1.0)
 {
     float3 normal;
     normal.xy = normalSample - 0.5;
     normal.z = sqrt(max(0, 0.25 - dot(normal.xy, normal.xy)));
+    normal.xy *= normalScale;
     return normalize(normal);
 }
 

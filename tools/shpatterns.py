@@ -99,6 +99,11 @@ NAMED_PATTERNS.update({
         SwizzleNode(BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5')), 'y'),
         fn_call('sqrt', [fn_call('max', PatternSet(literal('0'), BinaryOpNode(literal('0.25'), '-', fn_call('dot', [BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5')), BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5'))]))))]),
     ])]),
+    'autoNormal2': fn_call('normalize', [fn_call('float3', [
+        SwizzleNode(BinaryOpNode(BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5')), '*', PatternSlot('normalScale')), 'x'),
+        SwizzleNode(BinaryOpNode(BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5')), '*', PatternSlot('normalScale')), 'y'),
+        fn_call('sqrt', [fn_call('max', PatternSet(literal('0'), BinaryOpNode(literal('0.25'), '-', fn_call('dot', [BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5')), BinaryOpNode(PatternSlot('normalSample'), '-', literal('0.5'))]))))]),
+    ])]),
     'NORMAL': BinaryOpNode(
         BinaryOpNode(fn_call('normalize', [name('v4').member('xyz')]), '*', SwizzleNode(PatternSlot('tsNormal'), 'z')),
         '+',
@@ -157,14 +162,30 @@ NAMED_PATTERNS.update({
         fn_call('floor', [BinaryOpNode(literal('0.5'), '+', BinaryOpNode(literal('15'), '*', PatternSlot('index')))]),
         fn_call('floor', [BinaryOpNode(NAMED_PATTERNS['table_vnum_from_index.filter'], '+', NAMED_PATTERNS['table_vnum_from_index.filter'])]),
     ])),
-    'table_lookup_diffuse': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+    'table_lookup_diffuse_column': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
         literal('0.125'),
         BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
     ])]).member('xyzw'),
-    'table_lookup_specular': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+    'table_lookup_diffuse': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+        literal('0.125'),
+        BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
+    ])]).member('xyz'),
+    'table_lookup_specmask': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+        literal('0.125'),
+        BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
+    ])]).member('w'),
+    'table_lookup_specular_column': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
         literal('0.375'),
         BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
     ])]).member('xyzw'),
+    'table_lookup_fresnel': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+        literal('0.375'),
+        BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
+    ])]).member('xyz'),
+    'table_lookup_shininess': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
+        literal('0.375'),
+        BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
+    ])]).member('w'),
     'table_lookup_emissive': FunctionCallNode(None, name('g_SamplerTable'), 'Sample', [fn_call('float2', [
         literal('0.625'),
         BinaryOpNode(literal('0.0625'), '*', fn_call('table_vnum_from_index', [PatternSlot('index')])),
@@ -216,6 +237,7 @@ EXPR_SIMPLIFICATIONS = {
     'luminance': lambda color: fn_call('luminance', [color]),
     'x OP literal through float2': lambda vec_comp, op, scalar: BinaryOpNode(vec_comp, op, scalar),
     'autoNormal': lambda normalSample: fn_call('autoNormal', [normalSample]),
+    'autoNormal2': lambda normalSample, normalScale: fn_call('autoNormal', [normalSample, normalScale]),
     'NORMAL': lambda tsNormal: fn_call('NORMAL', [tsNormal]),
     'vector overlay': lambda under, over: fn_call('lerp', [under, fn_call('sign', [over]), fn_call('abs', [over])]),
 
@@ -227,8 +249,12 @@ EXPR_SIMPLIFICATIONS = {
     'final_occlusion_value': lambda value, interp: fn_call('lerp', [value, literal('1'), BinaryOpNode(name('g_SceneParameter').member('m_OcclusionIntensity').member('w'), '*', literal(str(1 - float(interp))))]),
     'mul(array[0..2], f4)': lambda array, vec: fn_call('saturate', [fn_call('MUL_3X4_ROWS', [array, literal('0'), vec])]),
     'table_vnum_from_index': lambda index, filter: fn_call('table_vnum_from_index', [index]),
-    'table_lookup_diffuse': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_DiffuseColumn'),
-    'table_lookup_specular': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_SpecularColumn'),
+    'table_lookup_diffuse_column': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_DiffuseColumn'),
+    'table_lookup_diffuse': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_DiffuseColor'),
+    'table_lookup_specmask': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_SpecularMask'),
+    'table_lookup_specular_column': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_SpecularColumn'),
+    'table_lookup_fresnel': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_FresnelValue0'),
+    'table_lookup_shininess': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_Shininess'),
     'table_lookup_emissive': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_EmissiveColor'),
     'table_lookup_tilew': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_TileW'),
     'table_lookup_tileuv': lambda index: name('g_SamplerTable').fn_call('Lookup', [index]).member('m_TileUVTransform'),

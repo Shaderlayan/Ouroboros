@@ -98,7 +98,11 @@ struct CompositeShaderHelper
     void SampleReflection()
     {
         incident = normalize(viewPosition);
+#ifdef SHPK_CHARACTERGLASS
+        reflection = -reflect(incident, normal);
+#else
         reflection = reflect(incident, normal);
+#endif
         const float3 texCoord = normalize(mul(g_CameraParameter.m_InverseViewMatrix, float4(reflection, 0)));
         const float level = 1 + (7 - log2(shininess)) * 0.75;
         const float rSample = g_SamplerReflection.SampleLevel(texCoord, level).x;
@@ -130,10 +134,12 @@ struct CompositeShaderHelper
 
     void CalculateLightDiffuseSpecular()
     {
-#ifdef SHPK_CHARACTER
+#if defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
         const float2 cameraDiffSpec = g_InstanceParameter.m_CameraLight.m_DiffuseSpecular.xy;
+        const float rimFactor = g_InstanceParameter.m_CameraLight.m_Rim.x;
 #else
         const float2 cameraDiffSpec = g_InstanceParameter.m_CameraLight.m_DiffuseSpecular.zw;
+        const float rimFactor = g_InstanceParameter.m_CameraLight.m_Rim.z;
 #endif
 
         const float finalOcclusionValue = lerp(occlusionValue, 1, g_SceneParameter.m_OcclusionIntensity.w * OCCLUSION_FACTOR);
@@ -149,7 +155,11 @@ struct CompositeShaderHelper
             + lightDiffuseS * diffSpecOcclusion.x
             + lightAmbient;
 
+#ifdef SHPK_CHARACTERGLASS
+        const float specDirFactor = saturate(-dot(reflection, direction));
+#else
         const float specDirFactor = saturate(dot(reflection, direction));
+#endif
         const float3 rimDirection = normalize(float3(g_InstanceParameter.m_CameraLight.m_Rim.y, 0, 0) - incident);
         const float rimAttenuation = 1 - saturate(dot(normal, rimDirection));
         const float rimAttenuation3 = rimAttenuation * rimAttenuation * rimAttenuation;
@@ -158,7 +168,7 @@ struct CompositeShaderHelper
 
         lightSpecularValue = cameraDiffSpec.y * pow(specDirFactor, shininess)
             + g_SamplerLightSpecular.Sample(screenSpaceTexCoord).xyz * diffSpecOcclusion.y
-            + g_InstanceParameter.m_CameraLight.m_Rim.z * rimAttenuation3;
+            + rimFactor * rimAttenuation3;
 #ifdef SHPK_HAIR
         if (g_UNK_15B70E35 > 0) {
             const float glossPosition = g_UNK_15B70E35 + dot(reflection, g_LightDirection.xyz);

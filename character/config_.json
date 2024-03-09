@@ -1,6 +1,6 @@
 {
     "original": "../character.shpk",
-    "defines": ["SHPK_CHARACTER"],
+    "defines": ["SHPK_CHARACTER", "OCCLUSION_FACTOR=0.1"],
     "packages": {
         "character.shpk": {
             "targets": ["all"]

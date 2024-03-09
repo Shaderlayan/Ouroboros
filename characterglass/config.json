@@ -1,6 +1,6 @@
 {
     "original": "../characterglass.shpk",
-    "defines": ["SHPK_CHARACTERGLASS"],
+    "defines": ["SHPK_CHARACTERGLASS", "OCCLUSION_FACTOR=0"],
     "packages": {
         "characterglass.shpk": {
             "targets": ["all"]
