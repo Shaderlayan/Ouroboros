@@ -30,7 +30,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
 
     comp.normal = NORMAL(autoNormal(normalS.xy, g_NormalScale));
     comp.normalWeightSq = 1;
-    comp.shininess = 1;
+    comp.shininess = colorRow.m_Shininess;
 
     comp.SampleReflection();
 
