@@ -5,13 +5,13 @@ import traceback
 import zlib
 from pattern import matches_pattern, matches_set_helper
 
-ASSIGNMENT_PATTERN = re.compile(r'^([A-Za-z0-9_]+)\.([xyzw]+) = (.*);$')
-BLOCK_START_PATTERN = re.compile(r'^((?:\} else )?if|while) \((.*)\) \{$')
+ASSIGNMENT_PATTERN = re.compile(r'^([A-Za-z0-9_]+)\.([xyzw]+) = (.*);(?:\s*//.*)?$')
+BLOCK_START_PATTERN = re.compile(r'^((?:\} else )?if|while) \((.*)\) \{(?:\s*//.*)?$')
 CAST_PATTERN = re.compile(r'\(\s*([A-Za-z0-9_]+)\s*\)')
-IF_VERB_PATTERN = re.compile(r'^if \((.*)\) ([A-Za-z0-9_]+);$')
+IF_VERB_PATTERN = re.compile(r'^if \((.*)\) ([A-Za-z0-9_]+);(?:\s*//.*)?$')
 INT_PATTERN = re.compile(r'^-?(?:0|[1-9][0-9]*)(u)?$')
 LITERAL_PATTERN = re.compile(r'-?(?:0|[1-9][0-9]*)(?:u|(?:\.[0-9]+)?(?:[Ee][+-]?[0-9]+)?)')
-LOCAL_PATTERN = re.compile(r'^([A-Za-z_]+)([0-9]+)? ((?:[A-Za-z0-9_]+)(?:, ?(?:[A-Za-z0-9_]+))*);$')
+LOCAL_PATTERN = re.compile(r'^([A-Za-z_]+)([0-9]+)? ((?:[A-Za-z0-9_]+)(?:, ?(?:[A-Za-z0-9_]+))*);(?:\s*//.*)?$')
 NAME_PATTERN = re.compile(r'[A-Za-z0-9_]+')
 SWAPC_PATTERN = re.compile(r'^([A-Za-z0-9_]+)\.([xyzw]+) = ([^?:;]*) \? ([^:;]*) : ([^;]*); ([A-Za-z0-9_]+)\.([xyzw]+) = \3 \? \5 : \4;$')
 SWIZZLE_PATTERN = re.compile(r'^[xyzw]{1,4}$')

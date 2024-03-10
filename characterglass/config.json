@@ -1,0 +1,69 @@
+{
+    "original": "../characterglass.shpk",
+    "defines": ["SHPK_CHARACTERGLASS", "OCCLUSION_FACTOR=0"],
+    "packages": {
+        "characterglass.shpk": {
+            "targets": ["all"]
+        }
+    },
+    "vertex_shaders": {
+        "vs-z-shadow": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_SHADOW0", "PASS_Z"]
+        },
+        "vs-z-cube": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_CUBE0", "PASS_Z"]
+        },
+        "vs-generic": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_G", "PASS_G_SEMITRANSPARENCY", "PASS_COMPOSITE"]
+        },
+        "vs-compositesemi": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_RIGID", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "vs-z-skin-shadow": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_SHADOW0", "PASS_Z"]
+        },
+        "vs-z-skin-cube": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_CUBE0", "PASS_Z"]
+        },
+        "vs-generic-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_G", "PASS_G_SEMITRANSPARENCY", "PASS_COMPOSITE"]
+        },
+        "vs-compositesemi-skin": {
+            "source": "vs.hlsl",
+            "defines": ["XFORM_SKIN", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        }
+    },
+    "pixel_shaders": {
+        "ps-generic": {
+            "source": "ps-generic.hlsl",
+            "defines": ["DITHERCLIP_OFF", "SUBVIEW_SHADOW0", "SUBVIEW_CUBE0", "SUBVIEW_MAIN", "PASS_Z", "PASS_G", "PASS_G_SEMITRANSPARENCY", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "OUTPUT_MUL", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-generic-dither": {
+            "source": "ps-generic.hlsl",
+            "defines": ["DITHERCLIP_ON", "SUBVIEW_SHADOW0", "SUBVIEW_CUBE0", "SUBVIEW_MAIN", "PASS_Z", "PASS_G", "PASS_G_SEMITRANSPARENCY", "PASS_COMPOSITE"]
+        },
+        "ps-compositesemi-dither": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "OUTPUT_MUL", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-compositesemi-add": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_OFF", "OUTPUT_ADD", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        },
+        "ps-compositesemi-dither-add": {
+            "source": "ps-composite.hlsl",
+            "defines": ["DITHERCLIP_ON", "OUTPUT_ADD", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+        }
+    }
+}
