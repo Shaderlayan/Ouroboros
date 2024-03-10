@@ -167,7 +167,9 @@ struct CompositeShaderHelper
         const float fresnelValue0GraySq = fresnelValue0Gray * fresnelValue0Gray;
 
         lightSpecularValue = cameraDiffSpec.y * pow(specDirFactor, shininess)
+#ifndef SHPK_CHARACTERGLASS
             + g_SamplerLightSpecular.Sample(screenSpaceTexCoord).xyz * diffSpecOcclusion.y
+#endif
             + rimFactor * rimAttenuation3;
 #ifdef SHPK_HAIR
         if (g_UNK_15B70E35 > 0) {
