@@ -100,8 +100,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.emissiveColor = comp.diffuseColor * emissivePart;
 #endif
 #if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T)
-    const float3 iriDiffuse = applyIridescence(sqrt(comp.diffuseColor), effectMaskS.x, comp.normal);
-    comp.diffuseColor = iriDiffuse * iriDiffuse;
+    comp.diffuseColor = applyIridescenceSq(comp.diffuseColor, effectMaskS.x, comp.normal);
     comp.aLumLegacyBloom = emissiveRedirect * effectMaskS.w;
 #else
     comp.aLumLegacyBloom = emissivePart;

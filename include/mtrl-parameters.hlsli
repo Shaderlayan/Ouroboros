@@ -40,9 +40,18 @@
 
 #endif
 
-#if defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
+#ifdef SHPK_CHARACTER
 
 #define MATERIAL_PARAMETER_SIZE 7
+
+#endif
+
+#ifdef SHPK_CHARACTERGLASS
+
+#define MATERIAL_PARAMETER_SIZE 8
+
+#define g_ScaleIridescence1 (g_MaterialParameter[6])
+#define g_ScaleIridescence2 (g_MaterialParameter[7])
 
 #endif
 
@@ -62,6 +71,10 @@
 #define g_ScatteringLevel      (g_MaterialParameter[5].x)
 #define g_UNK_15B70E35         (g_MaterialParameter[5].y)
 #define g_NormalScale          (g_MaterialParameter[5].z)
+
+#endif
+
+#if defined(SHPK_HAIR) || defined(SHPK_IRIS) || defined(SHPK_SKIN) || defined(SHPK_CHARACTER)
 
 #define g_EmissiveRedirect (g_MaterialParameter[6].zw)
 

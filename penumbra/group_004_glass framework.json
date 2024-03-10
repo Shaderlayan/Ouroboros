@@ -1,0 +1,26 @@
+﻿{
+  "Name": "Glass Framework",
+  "Description": "Enables the following things on character-related glass (eyeglasses and some gear/minion/mounts):\n- Iridescence ;\n- [BETA] Perma-wetness.",
+  "Priority": 4,
+  "Type": "Single",
+  "DefaultSettings": 1,
+  "Options": [
+    {
+      "Name": "None",
+      "Description": "",
+      "Files": {},
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Textures and Materials",
+      "Description": "Enables all the features of Atramentum Luminis on glass, but requires editing both the textures and the materials.\n\nUse this option if your mod contains both textures and materials.",
+      "Files": {
+        "shader/sm5/shpk/characterglass.shpk": "shader\\characterglass.shpk",
+        "penumbra/shpk_devkit/characterglass.json": "shpk_devkit\\characterglass.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}

@@ -19,7 +19,7 @@
 #endif
 
 #ifndef IRI_THETA_SKEW
-#if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T)
+#if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T) || defined(SHPK_CHARACTERGLASS)
 #define IRI_THETA_SKEW g_ScaleIridescence1.y
 #else
 #define IRI_THETA_SKEW 0
@@ -35,15 +35,36 @@ float iridescenceFromSkinInfluence(const float skinInfluence)
     );
 }
 
-float3 applyIridescence(const float3 diffuse, const float localIridescence, float3 normal)
+struct IridescenceData
 {
-    float factor = IRI_FACTOR;
-    if (factor <= 0.0) {
-        return diffuse;
+    bool complete;
+    float factor;
+    float3 colorBase;
+
+    float3 color(const float lumaFactor)
+    {
+#ifdef IRI_COLORSPACE_LAB
+        return lab2rgb(colorBase * float3(50.0 * lumaFactor, 1.0, 1.0) + float3(50.0, 0.0, 0.0));
+#else
+        return oklab2rgb(colorBase * float3(0.5 * lumaFactor, 0.003, 0.003) + float3(0.5, 0.0, 0.0));
+#endif
     }
-    factor = saturate(factor * localIridescence);
-    if (0.0 == factor) {
-        return diffuse;
+};
+
+IridescenceData calculateIridescenceData(const float localFactor, float3 normal)
+{
+    IridescenceData iri;
+    iri.colorBase = 0.0;
+
+    iri.factor = IRI_FACTOR;
+    if (iri.factor <= 0.0) {
+        iri.complete = false;
+        return iri;
+    }
+    iri.factor = saturate(iri.factor * localFactor);
+    if (0.0 == iri.factor) {
+        iri.complete = false;
+        return iri;
     }
     normal.z += IRI_Z_BIAS;
     normal = normalize(normal);
@@ -53,19 +74,50 @@ float3 applyIridescence(const float3 diffuse, const float localIridescence, floa
     sincos(atan2(normal.y, normal.x) * round(IRI_THETA_SCALE) + radians(IRI_THETA_XPOS) + distanceFromCenter * IRI_THETA_SKEW, s, c);
 
     const float rho = distanceFromCenter * IRI_RHO;
-    const float3 adjusted = float3(normal.z, c * rho, s * rho);
+    iri.colorBase = float3(normal.z, c * rho, s * rho);
 
-#ifdef IRI_COLORSPACE_LAB
-    const float3 light = lab2rgb(adjusted * float3(50.0, 1.0, 1.0) + float3(50.0, 0.0, 0.0));
-    const float3 dark = lab2rgb(adjusted * float3(-50.0, 1.0, 1.0) + float3(50.0, 0.0, 0.0));
-#else
-    const float3 light = oklab2rgb(adjusted * float3(0.5, 0.003, 0.003) + float3(0.5, 0.0, 0.0));
-    const float3 dark = oklab2rgb(adjusted * float3(-0.5, 0.003, 0.003) + float3(0.5, 0.0, 0.0));
-#endif
+    iri.complete = true;
+    return iri;
+}
 
-    return lerp(
-        screen(diffuse, lerp(0.0, dark, factor)),
-        diffuse * lerp(1.0, light, factor),
-        smoothstep(0.45, 0.55, dot(diffuse, float3(0.2126, 0.7152, 0.0722)))
-    );
+float3 applyIridescence(const float3 diffuse, const float localIridescence, const float3 normal)
+{
+    const IridescenceData iri = calculateIridescenceData(localIridescence, normal);
+    if (!iri.complete) {
+        return diffuse;
+    }
+
+    const float3 dark = screen(diffuse, lerp(0.0, iri.color(-1.0), iri.factor));
+    const float3 light = diffuse * lerp(1.0, iri.color(1.0), iri.factor);
+
+    return lerp(dark, light, smoothstep(0.45, 0.55, dot(diffuse, float3(0.2126, 0.7152, 0.0722))));
+}
+
+float4 applyIridescenceGlass(const float3 diffuse, const float alpha, const float localIridescence, const float3 normal)
+{
+    const IridescenceData iri = calculateIridescenceData(localIridescence, normal);
+    if (!iri.complete) {
+        return float4(diffuse, alpha);
+    }
+
+    const float3 dark = screen(diffuse, lerp(0.0, iri.color(-1.0), iri.factor));
+    const float3 light = diffuse * lerp(1.0, iri.color(1.0), iri.factor);
+    const float3 color = lerp(dark, light, smoothstep(0.45, 0.55, dot(diffuse, float3(0.2126, 0.7152, 0.0722))));
+
+    const float midAlpha = (1.0 - alpha) * iri.factor * (1.0 - iri.colorBase.x);
+    const float3 midColor = iri.color(0.0);
+
+    return float4((color * alpha + midColor * midAlpha) / (alpha + midAlpha), alpha + midAlpha);
+}
+
+float3 applyIridescenceSq(const float3 diffuseSq, const float localIridescence, float3 normal)
+{
+    const float3 iridescent = applyIridescence(sqrt(max(0, diffuseSq)), localIridescence, normal);
+    return iridescent * iridescent;
+}
+
+float4 applyIridescenceGlassSq(const float3 diffuseSq, const float alpha, const float localIridescence, float3 normal)
+{
+    const float4 iridescent = applyIridescenceGlass(sqrt(max(0, diffuseSq)), alpha, localIridescence, normal);
+    return float4(iridescent.xyz * iridescent.xyz, iridescent.w);
 }

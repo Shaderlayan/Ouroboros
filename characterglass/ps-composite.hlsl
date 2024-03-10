@@ -1,6 +1,7 @@
 #include <structs.hlsli>
 #include <resources.hlsli>
 #include <functions.hlsli>
+#include <iridescence.hlsli>
 #include <composite.hlsli>
 
 static const float2x2 ReflectionTransform = {
@@ -41,15 +42,24 @@ float4 main(const PS_Input ps) : SV_TARGET0
 
     comp.occlusionValue = 0;
 
+#ifdef ALUM_LEVEL_3
+    const float4 effectMaskS = g_SamplerEffectMask.Sample(ps.texCoord2.xy);
+#else
+    const float4 effectMaskS = float4(1, 0, 1, 1);
+#endif
+
 #ifdef OUTPUT_ADD
     comp.diffuseColor = 0;
 
     comp.specularMask = colorRow.m_SpecularMask * maskSSq.z;
     comp.fresnelValue0 = colorRow.m_FresnelValue0 * maskSSq.y;
 
-    comp.emissiveColor = colorRow.m_EmissiveColor;
+    comp.emissiveColor = colorRow.m_EmissiveColor * effectMaskS.z * effectMaskS.z;
 #else
     comp.diffuseColor = ps.color.xyz * colorRow.m_DiffuseColor * maskSSq.x;
+    const float4 iridescent = applyIridescenceGlassSq(comp.diffuseColor, comp.alpha, effectMaskS.x, comp.normal);
+    comp.diffuseColor = iridescent.xyz;
+    comp.alpha = iridescent.w;
 
     comp.specularMask = 0;
     comp.fresnelValue0 = 0;
@@ -57,8 +67,10 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.emissiveColor = 0;
 #endif
 
+    const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
+
     comp.ApplyFresnelValue0Directionality();
-    comp.ApplyWetness(ps.misc.w);
+    comp.ApplyWetness(wetnessInfluence);
     comp.CalculateLightDiffuseSpecular();
 
 #ifdef OUTPUT_ADD

@@ -1,4 +1,26 @@
 {
+    "ShaderKeys": {
+        "2638885380": {
+            "Label": "Atramentum Luminis Semantics",
+            "Values": {
+                "1770883968": {
+                    "Label": "Level 2",
+                    "Description": "Adds effects while keeping the same number of textures as vanilla."
+                },
+                "512408342": {
+                    "Label": "Level 3",
+                    "Description": "Adds more effects, but requires extra textures."
+                }
+            }
+        }
+    },
+    "Samplers": {
+        "4280632068": {
+            "Label": "[ALum] Effect (Ir, Wt, Em) Map",
+            "Description": "Red: Iridescence.\nGreen: Permanent wetness.\nBlue: Emissive Brightness.",
+            "DefaultTexture": "chara/common/texture/blue.tex"
+        }
+    },
     "Constants": {
         "740963549": [ {
             "Type": "Hidden"
@@ -39,6 +61,64 @@
         "364318261": [ {
             "Type": "Hidden"
         } ],
-        "3042205627": null
+        "3042205627": null,
+        "1090780911": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Effect Strength",
+                "Speed": 0.01,
+                "Minimum": 0
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Skew",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 2,
+                "Length": 2,
+                "Type": "Hidden"
+            },
+            {
+                "Offset": 4,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Normal Z Bias",
+                "Description": "0.0 is equivalent to HSO's \"Vibrant\" options.\n0.5 is equivalent to HSO's \"Normal\" options.\n1.0 is equivalent to HSO's \"Faint\" options.",
+                "Speed": 0.01,
+                "Minimum": 0
+            },
+            {
+                "Offset": 5,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Chroma",
+                "Description": "0 is grayscale.\n50 is equivalent to HSO.",
+                "Speed": 1,
+                "Minimum": 0,
+                "Precision": 0
+            },
+            {
+                "Offset": 6,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Shift",
+                "Description": "0 ° gives a reddish hue towards the right of the screen.\nPositive values rotate the effect counterclockwise.",
+                "Precision": 0,
+                "Speed": 1,
+                "Unit": "°"
+            },
+            {
+                "Offset": 7,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Multiplier",
+                "Type": "Integer"
+            }
+        ]
     }
 }

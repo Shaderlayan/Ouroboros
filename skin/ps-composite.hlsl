@@ -61,18 +61,18 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.shininess = lerp(comp.shininess, g_LipShininess, lipInfluence);
 #endif
     float4 diffuseS = g_SamplerDiffuse.SampleRemapped(mainTexCoord);
+    float3 diffuseSSq = diffuseS.xyz * diffuseS.xyz;
 #ifdef ALUM_LEVEL_T
-    diffuseS.xyz *= colorRow.m_DiffuseColor;
+    diffuseSSq *= colorRow.m_DiffuseColor;
 #endif
 #if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T)
     const float4 effectMaskS = g_SamplerEffectMask.SampleRemapped(mainTexCoord);
-    diffuseS.xyz = applyIridescence(diffuseS.xyz, effectMaskS.x, comp.normal);
+    diffuseSSq = applyIridescenceSq(diffuseSSq, effectMaskS.x, comp.normal);
     const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
 #else
-    diffuseS.xyz = applyIridescence(diffuseS.xyz, iridescenceFromSkinInfluence(maskS.x), comp.normal);
+    diffuseSSq = applyIridescenceSq(diffuseSSq, iridescenceFromSkinInfluence(maskS.x), comp.normal);
     const float wetnessInfluence = ps.misc.w;
 #endif
-    const float3 diffuseSSq = diffuseS.xyz * diffuseS.xyz;
 
     const float emissivePart = emissiveRedirect * (1.0 - diffuseS.w);
     const float diffusePart = max(0.0, 1.0 - emissivePart);

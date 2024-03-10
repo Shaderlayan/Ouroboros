@@ -82,8 +82,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float4 emissiveS = g_SamplerEmissive.Sample(ps.texCoord2.xy);
     const float3 originalDiffuse = comp.diffuseColor;
     const float3 preIriDiffuse = lerp(originalDiffuse, diffuseS.xyz * diffuseS.xyz, diffuseS.w);
-    const float3 iriDiffuse = applyIridescence(sqrt(preIriDiffuse), effectMaskS.x, comp.normal);
-    comp.diffuseColor = iriDiffuse * iriDiffuse;
+    comp.diffuseColor = applyIridescenceSq(preIriDiffuse, effectMaskS.x, comp.normal);
     comp.emissiveColor = lerp(originalDiffuse * emissivePart, emissiveS.xyz * emissiveS.xyz * emissiveRedirect, emissiveS.w);
     comp.lightDiffuseValue = lerp(comp.lightDiffuseValue, comp.lightReflection, effectMaskS.z);
     comp.aLumLegacyBloom = emissiveRedirect * effectMaskS.w;
@@ -91,8 +90,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
     const float3 originalDiffuse = comp.diffuseColor;
     const float3 preIriDiffuse = lerp(originalDiffuse, colorRow.m_DiffuseColor *  ps.color.xyz * maskSXYSq.x, effectMaskS.z);
-    const float3 iriDiffuse = applyIridescence(sqrt(preIriDiffuse), effectMaskS.x, comp.normal);
-    comp.diffuseColor = iriDiffuse * iriDiffuse;
+    comp.diffuseColor = applyIridescenceSq(preIriDiffuse, effectMaskS.x, comp.normal);
     comp.emissiveColor = lerp(originalDiffuse * emissivePart, colorRow.m_EmissiveColor * emissiveRedirect, effectMaskS.z);
     comp.aLumLegacyBloom = emissiveRedirect * effectMaskS.w;
 #else

@@ -3,7 +3,22 @@
     "defines": ["SHPK_CHARACTERGLASS", "OCCLUSION_FACTOR=0"],
     "packages": {
         "characterglass.shpk": {
-            "targets": ["all"]
+            "targets": ["all"],
+            "parameters": {
+                "g_ScaleIridescence": { "start": "6x", "size": 8 }
+            },
+            "keys": ["SelectAtramentumLuminisSemantics"]
+        }
+    },
+    "keys": {
+        "SelectAtramentumLuminisSemantics": {
+            "Level2": {
+                "define": "ALUM_LEVEL_2"
+            },
+            "Level3": {
+                "define": "ALUM_LEVEL_3",
+                "suffix": "-lv3"
+            }
         }
     },
     "vertex_shaders": {
@@ -47,7 +62,7 @@
         },
         "ps-compositesemi": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_OFF", "OUTPUT_MUL", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_OFF", "OUTPUT_MUL", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         },
         "ps-generic-dither": {
             "source": "ps-generic.hlsl",
@@ -55,15 +70,15 @@
         },
         "ps-compositesemi-dither": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_ON", "OUTPUT_MUL", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_ON", "OUTPUT_MUL", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         },
         "ps-compositesemi-add": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_OFF", "OUTPUT_ADD", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_OFF", "OUTPUT_ADD", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         },
         "ps-compositesemi-dither-add": {
             "source": "ps-composite.hlsl",
-            "defines": ["DITHERCLIP_ON", "OUTPUT_ADD", "SUBVIEW_MAIN", "PASS_COMPOSITE_SEMITRANSPARENCY"]
+            "defines": ["DITHERCLIP_ON", "OUTPUT_ADD", "SUBVIEW_MAIN", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY"]
         }
     }
 }
