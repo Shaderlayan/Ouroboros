@@ -100,11 +100,7 @@ struct CompositeShaderHelper
     void SampleReflection()
     {
         incident = normalize(viewPosition);
-#ifdef SHPK_CHARACTERGLASS
-        reflection = -reflect(incident, normal);
-#else
         reflection = reflect(incident, normal);
-#endif
         const float3 texCoord = normalize(mul(g_CameraParameter.m_InverseViewMatrix, float4(reflection, 0)));
         const float level = 1 + (7 - log2(shininess)) * 0.75;
         const float rSample = g_SamplerReflection.SampleLevel(texCoord, level).x;
@@ -158,11 +154,7 @@ struct CompositeShaderHelper
             + lightAmbient;
         lightLevel = luminance(lightDiffuseValue);
 
-#ifdef SHPK_CHARACTERGLASS
-        const float specDirFactor = saturate(-dot(reflection, direction));
-#else
         const float specDirFactor = saturate(dot(reflection, direction));
-#endif
         const float3 rimDirection = normalize(float3(g_InstanceParameter.m_CameraLight.m_Rim.y, 0, 0) - incident);
         const float rimAttenuation = 1 - saturate(dot(normal, rimDirection));
         const float rimAttenuation3 = rimAttenuation * rimAttenuation * rimAttenuation;

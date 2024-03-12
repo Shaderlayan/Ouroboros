@@ -5,8 +5,8 @@
 #include <composite.hlsli>
 
 static const float2x2 ReflectionTransform = {
-    -0.7071067811865476, 0.7071067811865476,
-     0.7071067811865476, 0.7071067811865476,
+     0.7071067811865476, -0.7071067811865476,
+    -0.7071067811865476, -0.7071067811865476,
 };
 
 float4 main(const PS_Input ps) : SV_TARGET0
@@ -31,10 +31,11 @@ float4 main(const PS_Input ps) : SV_TARGET0
 
     comp.normal = NORMAL(autoNormal(normalS.xy, g_NormalScale));
     comp.normalWeightSq = 1;
-    comp.shininess = colorRow.m_Shininess;
+    comp.shininess = max(0.001, colorRow.m_Shininess);
 
     comp.SampleReflection();
 
+    comp.shininess = colorRow.m_Shininess;
     comp.occlusionValue = 1;
     comp.lightDiffuseS = 0.5;
 
