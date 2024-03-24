@@ -20,7 +20,8 @@
                     "Label": "Multi"
                 },
                 "581216959": {
-                    "Label": "Simple"
+                    "Label": "Simple",
+                    "Description": "This mode forces the material to the following properties:\n- Diffuse Color: #D50000\n- Specular Color: #FFFFFF\n- Specular Strength: 1.00\n- Gloss Strength: 100\n- Emissive Color: #8C0000\n\nIt also ignores vertex colors and the normal map (except for opacity), and accepts no color table and no textures."
                 },
                 "1611594207": {
                     "Label": "Compatibility (Diffuse / Specular)"
