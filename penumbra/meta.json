@@ -2,7 +2,7 @@
   "FileVersion": 3,
   "Name": "Ouroboros",
   "Author": "Nylfae",
-  "Description": "Reverse engineering of some shaders.\n\nThis does nothing on its own, and is only of value to developers.",
+  "Description": "Reverse engineering of some shaders.\n\nThis does nothing on its own, and is only of value to developers and testers.",
   "Version": "1.0.0",
   "Website": "https://github.com/Shaderlayan",
   "ModTags": [

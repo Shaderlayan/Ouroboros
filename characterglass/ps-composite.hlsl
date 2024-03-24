@@ -47,6 +47,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
 
     comp.specularMask = colorRow.m_SpecularMask * maskSSq.z;
     comp.fresnelValue0 = colorRow.m_FresnelValue0 * maskSSq.y;
+    comp.glossMask = 0;
 
     comp.emissiveColor = colorRow.m_EmissiveColor;
 #else
@@ -54,6 +55,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
 
     comp.specularMask = 0;
     comp.fresnelValue0 = 0;
+    comp.glossMask = 0;
 
     comp.emissiveColor = 0;
 #endif

@@ -39,6 +39,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.diffuseColor = customizeColor * mtrlDiffuseColorSq * maskSSq.x;
     comp.fresnelValue0 = g_FresnelValue0 * maskSSq.y;
     comp.specularMask = g_SpecularMask;
+    comp.glossMask = 0;
     comp.shininess = g_Shininess;
     comp.emissiveColor = 0;
 

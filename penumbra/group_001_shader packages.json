@@ -36,6 +36,16 @@
       "Manipulations": []
     },
     {
+      "Name": "Character",
+      "Description": "",
+      "Priority": 0,
+      "Files": {
+        "shader/sm5/shpk/character.shpk": "shader\\character.shpk"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
       "Name": "Character Glass",
       "Description": "",
       "Priority": 0,

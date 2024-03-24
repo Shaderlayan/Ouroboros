@@ -75,6 +75,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.diffuseColor *= ps.color.y * mtrlDiffuseColorSq;
     comp.fresnelValue0 *= specularSq;
     comp.specularMask = ps.color.z * tileDiffuseSSq.w * g_SpecularMask;
+    comp.glossMask = 0;
     comp.emissiveColor = g_EmissiveColor * g_EmissiveColor;
 
     comp.ApplyFresnelValue0Directionality();

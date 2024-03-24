@@ -54,6 +54,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.diffuseColor *= ps.color.xyz * maskSXYSq.x * mtrlDiffuseColorSq;
     comp.specularMask = g_SpecularMask * maskSXYSq.y;
     comp.fresnelValue0 = g_CustomizeParameter.m_HairFresnelValue0;
+    comp.glossMask = 1;
     comp.shininess = g_Shininess;
     comp.emissiveColor = 0;
 
