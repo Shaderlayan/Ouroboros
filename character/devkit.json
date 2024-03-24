@@ -23,7 +23,7 @@
                     "Label": "Simple"
                 },
                 "1611594207": {
-                    "Label": "Compatibility (Diff/Spec)"
+                    "Label": "Compatibility (Diffuse / Specular)"
                 }
             }
         },
@@ -43,7 +43,7 @@
         },
         "3367837167": {
             "Label": "Specular Map Mode",
-            "Description": "This is a setting of the Compatibility (Diff/Spec) Texture Mode, and has no effect outside of it.",
+            "Description": "This is a setting of the Compatibility (Diffuse / Specular) Texture Mode, and has no effect outside of it.",
             "Values": {
                 "428675533": {
                     "Label": "Color"
