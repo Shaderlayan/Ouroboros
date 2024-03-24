@@ -53,6 +53,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #else
     comp.shininess = g_Shininess;
 #endif
+    comp.glossMask = 0;
 
     comp.BeginCalculateLightDiffuseSpecular();
 
@@ -73,7 +74,6 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float3 catchlightS = g_SamplerCatchlight.Sample(catchlightTexCoord * float2(catchlightUFactor, 1) + float2(catchlightUOffset, 0)).xyz;
 
     comp.diffuseColor = customizeOrOptionColor * maskSSq.x;
-    comp.glossMask = 0;
     comp.emissiveColor = 0;
 
 #ifdef ALUM_EMISSIVE_REDIRECT

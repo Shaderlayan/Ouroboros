@@ -48,6 +48,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float specularMask = g_SpecularMask;
     comp.shininess = g_Shininess;
 #endif
+    comp.glossMask = 0;
 
     comp.BeginCalculateLightDiffuseSpecular();
 #ifdef ALUM_EMISSIVE_REDIRECT
@@ -146,7 +147,6 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.diffuseColor *= ps.color.y * mtrlDiffuseColorSq;
     comp.fresnelValue0 *= specularSq;
     comp.specularMask = ps.color.z * tileDiffuseSSq.w * specularMask;
-    comp.glossMask = 0;
     comp.emissiveColor += g_EmissiveColor * g_EmissiveColor;
 
     comp.ApplyFresnelValue0Directionality();

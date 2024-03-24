@@ -25,19 +25,42 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.CalculateLightAmbientReflection();
 
 #ifdef MODE_SIMPLE
-    comp.diffuseColor = float3(0.7, 0, 0);
-
-    comp.specularMask = 1;
-    comp.fresnelValue0 = 1;
-    comp.glossMask = 0;
-
     comp.shininess = 100;
-
-    comp.emissiveColor = float3(0.3, 0, 0);
 #else
     const float index = g_SamplerIndex.Sample(ps.texCoord2.xy).w;
     const ColorRow colorRow = g_SamplerTable.Lookup(index);
 
+    comp.shininess = colorRow.m_Shininess;
+#endif
+
+#ifdef MODE_COMPATIBILITY
+    const float3 specularS = g_SamplerSpecular.Sample(ps.texCoord2.xy).xyz;
+    const float3 specularSSq = specularS * specularS;
+#ifdef COMPAT_MASK
+    comp.glossMask = specularSSq.x;
+#else
+    comp.glossMask = 0;
+#endif
+#else
+    comp.glossMask = 0;
+#endif
+
+    comp.BeginCalculateLightDiffuseSpecular();
+
+#ifdef ALUM_EMISSIVE_REDIRECT
+    const float emissiveRedirect = ALUM_EMISSIVE_REDIRECT;
+#else
+    const float emissiveRedirect = max(0.0, lerp(g_EmissiveRedirect.y, g_EmissiveRedirect.x, comp.lightLevel));
+#endif
+
+#ifdef MODE_SIMPLE
+    comp.diffuseColor = float3(0.7, 0, 0);
+
+    comp.specularMask = 1;
+    comp.fresnelValue0 = 1;
+
+    comp.emissiveColor = float3(0.3, 0, 0);
+#else
     const float2 tileTexCoord = mul(colorRow.m_TileUVTransform, ps.texCoord2.xy);
     const float tileIndex = nearestNeighbor64(colorRow.m_TileW);
     const float4 tileDiffuseS = g_SamplerTileDiffuse.SampleLevel(float3(tileTexCoord, tileIndex), 0);
@@ -48,22 +71,16 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.specularMask = colorRow.m_SpecularMask * tileDiffuseSSq.w;
     comp.fresnelValue0 = colorRow.m_FresnelValue0;
 
-    comp.shininess = colorRow.m_Shininess;
-
     comp.emissiveColor = colorRow.m_EmissiveColor;
 
 #ifdef MODE_COMPATIBILITY
     const float3 diffuseS = g_SamplerDiffuse.Sample(ps.texCoord2.xy).xyz;
     comp.diffuseColor *= diffuseS * diffuseS;
 
-    const float3 specularS = g_SamplerSpecular.Sample(ps.texCoord2.xy).xyz;
-    const float3 specularSSq = specularS * specularS;
 #ifdef COMPAT_MASK
-    comp.glossMask = specularSSq.x;
     comp.fresnelValue0 *= specularSSq.y;
     comp.specularMask *= specularSSq.z;
 #else
-    comp.glossMask = 0;
     comp.fresnelValue0 *= specularSSq;
 #endif
 #else
@@ -73,7 +90,6 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.diffuseColor *= maskSSq.x;
     comp.fresnelValue0 *= maskSSq.y;
     comp.specularMask *= maskSSq.z;
-    comp.glossMask = 0;
 #endif
 
 #ifdef DECAL_COLOR
@@ -97,12 +113,18 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #endif
 #endif
 
+#ifdef ALUM_LEVEL_3
+    comp.aLumLegacyBloom = emissiveRedirect * effectMaskS.w * luminance(g_MaterialParameterDynamic.m_EmissiveColor.xyz);
+#else
+    comp.aLumLegacyBloom = emissiveRedirect * luminance(g_MaterialParameterDynamic.m_EmissiveColor.xyz);
+#endif
+
     comp.emissiveColor *= g_MaterialParameterDynamic.m_EmissiveColor.xyz;
 
     comp.ApplyFresnelValue0Directionality();
     comp.ApplyWetness(ps.misc.w);
     comp.OccludeDiffuse();
-    comp.CalculateLightDiffuseSpecular();
+    comp.EndCalculateLightDiffuseSpecular();
 
     return comp.Finish();
 }

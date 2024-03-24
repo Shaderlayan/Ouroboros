@@ -45,6 +45,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #else
     comp.shininess = g_Shininess;
 #endif
+    comp.glossMask = 1;
 
     comp.BeginCalculateLightDiffuseSpecular();
 
@@ -108,7 +109,6 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.specularMask = g_SpecularMask * maskSXYSq.y;
     comp.fresnelValue0 = g_CustomizeParameter.m_HairFresnelValue0;
 #endif
-    comp.glossMask = 1;
 
     comp.ApplyFresnelValue0Directionality();
     comp.ApplyWetness(wetnessInfluence);

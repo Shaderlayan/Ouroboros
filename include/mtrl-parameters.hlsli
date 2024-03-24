@@ -44,6 +44,8 @@
 
 #define MATERIAL_PARAMETER_SIZE 7
 
+#define g_LegacyBloom       (g_MaterialParameter[6].xy)
+
 #endif
 
 #ifdef SHPK_CHARACTERGLASS
