@@ -30,6 +30,7 @@ jobs:
           docker_network: none
           run: |-
             find /target \( -name '.*' \! -name . -prune \) -o -type d -exec chmod ugo+w,o+t {} \;
+            /usr/local/bin/gosu wineuser git config --global --add safe.directory /target
             /usr/local/bin/gosu wineuser /target/package.sh
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
