@@ -111,7 +111,8 @@ if [ -n "$INSTALL_DIR" ]; then
         cp -v build/iris"$IN_SUFFIX".shpk "$INSTALL_DIR/iris$OUT_SUFFIX.shpk"
     fi
     if [ -z "$IN_SUFFIX" ]; then
-        cp -v build/hair"$IN_SUFFIX".shpk "$INSTALL_DIR/hair$OUT_SUFFIX.shpk"
+        cp -v build/character"$IN_SUFFIX".shpk "$INSTALL_DIR/character$OUT_SUFFIX.shpk"
         cp -v build/characterglass"$IN_SUFFIX".shpk "$INSTALL_DIR/characterglass$OUT_SUFFIX.shpk"
+        cp -v build/hair"$IN_SUFFIX".shpk "$INSTALL_DIR/hair$OUT_SUFFIX.shpk"
     fi
 fi

@@ -8,7 +8,8 @@ float4 main(const PS_Input ps) : SV_TARGET0
     if (g_InstanceParameter.m_MulColor.w < ditherS) discard;
 #endif
 
-    const float alphaS = g_SamplerNormal.Sample(ps.texCoord2.xy).z;
+    const float2 opacityTexCoord = lerp(ps.texCoord2.xy, ps.texCoord2.zw, g_OpacityTexCoord);
+    const float alphaS = g_SamplerNormal.Sample(opacityTexCoord).z;
     if (alphaS * ps.color.w < g_AlphaThreshold) discard;
 
 #ifdef SUBVIEW_MAIN

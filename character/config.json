@@ -3,7 +3,25 @@
     "defines": ["SHPK_CHARACTER", "OCCLUSION_FACTOR=0.1"],
     "packages": {
         "character.shpk": {
-            "targets": ["all"]
+            "targets": ["all"],
+            "parameters": {
+                "g_OpacityTexCoord": { "start": "5w", "size": 1 },
+                "g_LegacyBloom": { "start": "6x", "size": 2 },
+                "g_EmissiveRedirect": { "start": "6z", "size": 2 },
+                "g_ScaleIridescence": { "start": "7x", "size": 8 }
+            },
+            "keys": ["SelectAtramentumLuminisSemantics"]
+        }
+    },
+    "keys": {
+        "SelectAtramentumLuminisSemantics": {
+            "Level2": {
+                "define": "ALUM_LEVEL_2"
+            },
+            "Level3": {
+                "define": "ALUM_LEVEL_3",
+                "suffix": "-lv3"
+            }
         }
     },
     "vertex_shaders": {
@@ -79,19 +97,19 @@
         },
         "ps-g": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "PASS_G" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-gsemi": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "COMPAT_MASK", "PASS_G_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY" ]
         },
         "ps-composite": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-z": {
             "source": "ps-z.hlsl",
@@ -99,11 +117,11 @@
         },
         "ps-composite-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-z-shadow-cube-dither": {
             "source": "ps-z.hlsl",
@@ -111,19 +129,19 @@
         },
         "ps-g-dither": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "PASS_G" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-gsemi-dither": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "COMPAT_MASK", "PASS_G_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_DEFAULT", "MODE_COMPATIBILITY", "COMPAT_DEFAULT", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY" ]
         },
         "ps-composite-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-z-dither": {
             "source": "ps-z.hlsl",
@@ -131,307 +149,307 @@
         },
         "ps-composite-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_OFF", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-g-simple": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_G" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-gsemi-simple": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_G_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY" ]
         },
         "ps-composite-simple": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-simple": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-g-simple-dither": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_G" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-gsemi-simple-dither": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_G_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_G_SEMITRANSPARENCY" ]
         },
         "ps-composite-simple-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-simple-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_SIMPLE", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_COLOR", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_DEFAULT", "DECAL_ALPHA", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_DEFAULT", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-g-compat-mask": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_COMPATIBILITY", "COMPAT_MASK", "PASS_G" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "MODE_COMPATIBILITY", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-composite-compat-mask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-g-compat-mask-dither": {
             "source": "ps-g.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_COMPATIBILITY", "COMPAT_MASK", "PASS_G" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "MODE_COMPATIBILITY", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_G" ]
         },
         "ps-composite-compat-mask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_OFF", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-unk": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-unk-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-unk-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-unk-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_COLOR", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-alpha": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-alpha-vmask": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_OFF", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-alpha-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_COLOR", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         },
         "ps-composite-compat-mask-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE" ]
         },
         "ps-compositesemi-compat-mask-alpha-vmask-dither": {
             "source": "ps-composite.hlsl",
-            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
+            "defines": [ "DITHERCLIP_ON", "SUBVIEW_MAIN", "VERTEX_MASK", "MODE_COMPATIBILITY", "DECAL_ALPHA", "COMPAT_MASK", "ALUM_LEVEL_2", "PASS_COMPOSITE_SEMITRANSPARENCY" ]
         }
     }
 }

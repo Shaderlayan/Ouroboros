@@ -129,7 +129,7 @@ Please note that this level changes how some things are interpreted in such a wa
 
 ### Skin/Hair/Iris: Switching to level 3
 
-In the Shader section, set **Atramentum Luminis Semantics** to *Level 3*.
+In the Shader section, set **Atramentum Luminis Mode** to *Level 3*.
 
 This will automatically add new maps as required, set to a default that does not enable any new effects. You then have to change the paths for maps you want to actually use.
 

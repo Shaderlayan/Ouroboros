@@ -1,0 +1,38 @@
+﻿{
+  "Name": "Other Frameworks",
+  "Priority": 4,
+  "Type": "Multi",
+  "DefaultSettings": 7,
+  "Options": [
+    {
+      "Name": "Hair Framework",
+      "Description": "Enables the following things on the hair:\n- Glow (emissive) ;\n- Iridescence ;\n- [BETA] Perma-wetness ;\n- [BETA] Metallic finish.",
+      "Files": {
+        "shader/sm5/shpk/hair.shpk": "shader\\hair.shpk",
+        "penumbra/shpk_devkit/hair.json": "shpk_devkit\\hair.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Glass Framework",
+      "Description": "Enables the following things on character-related glass (eyeglasses and some gear, minions, mounts and ornaments):\n- Iridescence ;\n- [BETA] Perma-wetness.",
+      "Files": {
+        "shader/sm5/shpk/characterglass.shpk": "shader\\characterglass.shpk",
+        "penumbra/shpk_devkit/characterglass.json": "shpk_devkit\\characterglass.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    },
+    {
+      "Name": "Gear Framework",
+      "Description": "Enables the following things on other character-related elements (gear, minions, mounts and ornaments):\n- Iridescence ;\n- [BETA] Perma-wetness ;\n- Reactive glow ;\n- Opacity remapping.",
+      "Files": {
+        "shader/sm5/shpk/character.shpk": "shader\\character.shpk",
+        "penumbra/shpk_devkit/character.json": "shpk_devkit\\character.json"
+      },
+      "FileSwaps": {},
+      "Manipulations": []
+    }
+  ]
+}

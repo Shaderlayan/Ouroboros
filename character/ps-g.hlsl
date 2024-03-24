@@ -16,11 +16,13 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #endif
 
     const float4 normalS = g_SamplerNormal.Sample(ps.texCoord2.xy);
-    const float alpha = ps.color.w * normalS.z;
+    const float2 opacityTexCoord = lerp(ps.texCoord2.xy, ps.texCoord2.zw, g_OpacityTexCoord);
+    const float alphaS = g_SamplerNormal.Sample(opacityTexCoord).z;
+    const float alpha = ps.color.w * alphaS;
     if (alpha < alphaThreshold) discard;
 
 #ifdef MODE_SIMPLE
-    const float3 normal = normalize(ps.normal);
+    const float3 normal = normalize(ps.normal.xyz);
     float shininess = 100;
 #else
     const float index = g_SamplerIndex.Sample(ps.texCoord2.xy).w;
@@ -42,7 +44,14 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #ifdef PASS_G_SEMITRANSPARENCY
     const float w = alpha / g_AlphaThreshold;
 #else
-    shininess = lerp(shininess, g_SceneParameter.m_Wetness.y, ps.misc.w);
+#ifdef ALUM_LEVEL_3
+    const float4 effectMaskS = g_SamplerEffectMask.Sample(ps.texCoord2.xy);
+    const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
+#else
+    const float wetnessInfluence = ps.misc.w;
+#endif
+
+    shininess = lerp(shininess, g_SceneParameter.m_Wetness.y, wetnessInfluence);
 #ifdef COMPAT_MASK
     const float specularSX = g_SamplerSpecular.Sample(ps.texCoord2.xy).x;
     const float specularSXSq = specularSX * specularSX;

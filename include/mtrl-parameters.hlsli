@@ -42,9 +42,12 @@
 
 #ifdef SHPK_CHARACTER
 
-#define MATERIAL_PARAMETER_SIZE 7
+#define MATERIAL_PARAMETER_SIZE 9
 
+#define g_OpacityTexCoord   (g_MaterialParameter[5].w)
 #define g_LegacyBloom       (g_MaterialParameter[6].xy)
+#define g_ScaleIridescence1 (g_MaterialParameter[7])
+#define g_ScaleIridescence2 (g_MaterialParameter[8])
 
 #endif
 

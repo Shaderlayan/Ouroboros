@@ -34,6 +34,8 @@ for strength in "" wk sg; do
     INSTALL_DIR="build/hso/shader" ./build.sh $strength x3
 done
 
+cp -v character/devkit.json build/alum/shpk_devkit/character.json
+cp -v characterglass/devkit.json build/alum/shpk_devkit/characterglass.json
 cp -v hair/devkit.json build/alum/shpk_devkit/hair.json
 cp -v iris/devkit.json build/alum/shpk_devkit/iris.json
 cp -v iris/devkit1.json build/alum/shpk_devkit/iris1.json

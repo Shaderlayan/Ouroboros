@@ -52,6 +52,19 @@
                     "Label": "Multi"
                 }
             }
+        },
+        "2638885380": {
+            "Label": "Atramentum Luminis Mode",
+            "Values": {
+                "1770883968": {
+                    "Label": "Level 2",
+                    "Description": "Adds effects while keeping the same number of textures as vanilla."
+                },
+                "512408342": {
+                    "Label": "Level 3",
+                    "Description": "Adds more effects, but requires extra textures."
+                }
+            }
         }
     },
     "Samplers": {
@@ -120,6 +133,117 @@
         "364318261": null,
         "3042205627": [ {
             "Type": "Hidden"
-        } ]
+        } ],
+        "2405734609": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Emissive Strength (well-lit environments)",
+                "Speed": 0.01,
+                "Bias": -1
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Emissive Strength (dark environments)",
+                "Speed": 0.01,
+                "Bias": -1
+            }
+        ],
+        "2783821404": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (well-lit environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Emissive (Glow)",
+                "Label": "Legacy Bloom (dark environments)",
+                "Description": "Imitates the Atramentum Luminis 2.x bloom effect.",
+                "Speed": 0.01
+            }
+        ],
+        "1090780911": [
+            {
+                "Offset": 0,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Effect Strength",
+                "Speed": 0.01,
+                "Minimum": 0
+            },
+            {
+                "Offset": 1,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Skew",
+                "Speed": 0.01
+            },
+            {
+                "Offset": 2,
+                "Length": 2,
+                "Type": "Hidden"
+            },
+            {
+                "Offset": 4,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Normal Z Bias",
+                "Description": "0.0 is equivalent to HSO's \"Vibrant\" options.\n0.5 is equivalent to HSO's \"Normal\" options.\n1.0 is equivalent to HSO's \"Faint\" options.",
+                "Speed": 0.01,
+                "Minimum": 0
+            },
+            {
+                "Offset": 5,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Chroma",
+                "Description": "0 is grayscale.\n50 is equivalent to HSO.",
+                "Speed": 1,
+                "Minimum": 0,
+                "Precision": 0
+            },
+            {
+                "Offset": 6,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Shift",
+                "Description": "0 ° gives a reddish hue towards the right of the screen.\nPositive values rotate the effect counterclockwise.",
+                "Precision": 0,
+                "Speed": 1,
+                "Unit": "°"
+            },
+            {
+                "Offset": 7,
+                "Length": 1,
+                "Group": "[ALum] Iridescence",
+                "Label": "Hue Multiplier",
+                "Type": "Integer"
+            }
+        ],
+        "3801230458": [
+            {
+                "Group": "General Settings",
+                "Label": "[ALum] Opacity Texture Coordinates",
+                "Type": "Enum",
+                "Values": [
+                    {
+                        "Label": "UV1",
+                        "Value": 0
+                    },
+                    {
+                        "Label": "UV2",
+                        "Value": 1
+                    }
+                ]
+            }
+        ]
     }
 }

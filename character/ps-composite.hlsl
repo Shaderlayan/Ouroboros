@@ -1,6 +1,7 @@
 #include <structs.hlsli>
 #include <resources.hlsli>
 #include <functions.hlsli>
+#include <iridescence.hlsli>
 #include <composite.hlsli>
 
 float4 main(const PS_Input ps) : SV_TARGET0
@@ -13,7 +14,9 @@ float4 main(const PS_Input ps) : SV_TARGET0
     CompositeShaderHelper comp;
     comp.viewPosition = ps.misc.xyz;
 
-    comp.alpha = ps.color.w * g_SamplerNormal.Sample(ps.texCoord2.xy).z;
+    const float2 opacityTexCoord = lerp(ps.texCoord2.xy, ps.texCoord2.zw, g_OpacityTexCoord);
+    const float alphaS = g_SamplerNormal.Sample(opacityTexCoord).z;
+    comp.alpha = ps.color.w * alphaS;
     if (!comp.AlphaTest()) discard;
     comp.DivideAlpha();
 
@@ -23,6 +26,12 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.SampleLightDiffuse();
     comp.occlusionValue = saturate(lerp(2, comp.SampleOcclusion(), comp.alpha));
     comp.CalculateLightAmbientReflection();
+
+#ifdef ALUM_LEVEL_3
+    const float4 effectMaskS = g_SamplerEffectMask.Sample(ps.texCoord2.xy);
+#else
+    const float4 effectMaskS = float4(1, 0, 1, 1);
+#endif
 
 #ifdef MODE_SIMPLE
     comp.shininess = 100;
@@ -50,11 +59,11 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #ifdef ALUM_EMISSIVE_REDIRECT
     const float emissiveRedirect = ALUM_EMISSIVE_REDIRECT;
 #else
-    const float emissiveRedirect = max(0.0, lerp(g_EmissiveRedirect.y, g_EmissiveRedirect.x, comp.lightLevel));
+    const float emissiveRedirect = max(0.0, 1.0 + lerp(g_EmissiveRedirect.y, g_EmissiveRedirect.x, comp.lightLevel));
 #endif
 
 #ifdef MODE_SIMPLE
-    comp.diffuseColor = float3(0.7, 0, 0);
+    comp.diffuseColor = applyIridescenceSq(float3(0.7, 0, 0), effectMaskS.x, comp.normal);
 
     comp.specularMask = 1;
     comp.fresnelValue0 = 1;
@@ -66,7 +75,7 @@ float4 main(const PS_Input ps) : SV_TARGET0
     const float4 tileDiffuseS = g_SamplerTileDiffuse.SampleLevel(float3(tileTexCoord, tileIndex), 0);
     const float4 tileDiffuseSSq = tileDiffuseS * tileDiffuseS;
 
-    comp.diffuseColor = colorRow.m_DiffuseColor * tileDiffuseSSq.xyz;
+    comp.diffuseColor = colorRow.m_DiffuseColor;
 
     comp.specularMask = colorRow.m_SpecularMask * tileDiffuseSSq.w;
     comp.fresnelValue0 = colorRow.m_FresnelValue0;
@@ -92,6 +101,9 @@ float4 main(const PS_Input ps) : SV_TARGET0
     comp.specularMask *= maskSSq.z;
 #endif
 
+    comp.diffuseColor = applyIridescence(comp.diffuseColor, effectMaskS.x, comp.normal);
+    comp.diffuseColor *= tileDiffuseSSq.xyz;
+
 #ifdef DECAL_COLOR
     const float4 decalS = g_SamplerDecal.Sample(ps.texCoord2.zw);
     const float decalAlpha = decalS.w * g_DecalColor.w;
@@ -113,16 +125,13 @@ float4 main(const PS_Input ps) : SV_TARGET0
 #endif
 #endif
 
-#ifdef ALUM_LEVEL_3
+    comp.emissiveColor *= emissiveRedirect * effectMaskS.z * g_MaterialParameterDynamic.m_EmissiveColor.xyz;
     comp.aLumLegacyBloom = emissiveRedirect * effectMaskS.w * luminance(g_MaterialParameterDynamic.m_EmissiveColor.xyz);
-#else
-    comp.aLumLegacyBloom = emissiveRedirect * luminance(g_MaterialParameterDynamic.m_EmissiveColor.xyz);
-#endif
 
-    comp.emissiveColor *= g_MaterialParameterDynamic.m_EmissiveColor.xyz;
+    const float wetnessInfluence = max(ps.misc.w, screen(ps.misc.w, effectMaskS.y));
 
     comp.ApplyFresnelValue0Directionality();
-    comp.ApplyWetness(ps.misc.w);
+    comp.ApplyWetness(wetnessInfluence);
     comp.OccludeDiffuse();
     comp.EndCalculateLightDiffuseSpecular();
 
