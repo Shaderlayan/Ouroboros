@@ -95,6 +95,11 @@
                     "DefaultTexture": "chara/common/texture/white.tex"
                 }
             ]
+        },
+        "4280632068": {
+            "Label": "[ALum] Effect (Ir, Wt, Em, Bm) Map",
+            "Description": "Red: Iridescence.\nGreen: Permanent wetness.\nBlue: Emissive Brightness.\nAlpha: Legacy bloom.",
+            "DefaultTexture": "chara/common/texture/blue.tex"
         }
     },
     "Constants": {
