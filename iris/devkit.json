@@ -1,5 +1,18 @@
 {
     "ShaderKeys": {
+        "4113354501": {
+            "Label": "Vertex Color Mode: Multi (LE, RE, Op)",
+            "Description": "This is ignored by this shader package and will be treated as Multi anyway.\n\nRed: Left eye color influence.\nGreen: Right eye color influence.\nBlue: Unused.\nAlpha: \"Opacity\" (only used for the threshold).",
+            "Values": {
+                "3756477356": {
+                    "Label": "Color",
+                    "Description": "This is ignored by this shader package."
+                },
+                "2815623008": {
+                    "Label": "Multi (LI, RI, Op)"
+                }
+            }
+        },
         "2638885380": {
             "Label": "Atramentum Luminis Semantics",
             "Values": {
@@ -18,7 +31,6 @@
             }
         }
     },
-    "Comment": "Vertex color semantics:\nRed: Left eye color influence.\nGreen: Right eye color influence.\nBlue: Unused.\nAlpha: \"Opacity\" (only used for the threshold).",
     "Samplers": {
         "2320401078": {
             "Vary": [ "2638885380" ],

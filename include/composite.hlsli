@@ -25,6 +25,7 @@ struct CompositeShaderHelper
     float3 fresnelValue0;
     float3 emissiveColor;
     float specularMask;
+    float glossMask;
     float alpha;
     float aLumLegacyBloom;
 
@@ -164,13 +165,11 @@ struct CompositeShaderHelper
             + g_SamplerLightSpecular.Sample(screenSpaceTexCoord).xyz * diffSpecOcclusion.y
 #endif
             + rimFactor * rimAttenuation3;
-#ifdef SHPK_HAIR
-        if (g_UNK_15B70E35 > 0) {
-            const float glossPosition = g_UNK_15B70E35 + dot(reflection, g_LightDirection.xyz);
+        if (glossMask * g_UNK_15B70E35 > 0) {
+            const float glossPosition = glossMask * g_UNK_15B70E35 + dot(reflection, g_LightDirection.xyz);
             const float glossSpecFactor = saturate(glossPosition + min(0, 1 - glossPosition) * 2);
             lightSpecularValue *= pow(glossSpecFactor, shininess);
         }
-#endif
     }
 
     void EndCalculateLightDiffuseSpecular()

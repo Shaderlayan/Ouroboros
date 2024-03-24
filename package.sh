@@ -4,8 +4,9 @@ set -e
 
 cd "$(dirname "$0")"
 
-ALUM_NAME="$(jq --raw-output '.Name + " v" + .Version' < penumbra/meta.json)"
-HSO_NAME="$(jq --raw-output '.Name + " v" + .Version' < penumbra_hso/meta.json)"
+VERSION="$(git describe --tags --always | sed -e 's/^v\|^.*\?-v//')"
+ALUM_NAME="$(jq --raw-output '.Name' < penumbra/meta.json) v${VERSION}"
+HSO_NAME="$(jq --raw-output '.Name' < penumbra_hso/meta.json) v${VERSION}"
 
 rm -rf build/alum
 rm -f "build/${ALUM_NAME}.pmp"
@@ -43,6 +44,9 @@ cp -v skin/devkit1.json build/hso/shpk_devkit/skin.json
 
 cp -v penumbra/*.json build/alum
 cp -v penumbra_hso/*.json build/hso
+
+jq --arg VERSION "${VERSION}" '.Version |= $VERSION' penumbra/meta.json > build/alum/meta.json
+jq --arg VERSION "${VERSION}" '.Version |= $VERSION' penumbra_hso/meta.json > build/hso/meta.json
 
 cd build/alum
 zip -r -9 "../${ALUM_NAME}.pmp" .

@@ -1,5 +1,18 @@
 {
     "ShaderKeys": {
+        "4113354501": {
+            "Label": "Vertex Color Mode: Multi (Mu, Di, Gl, Op)",
+            "Description": "This is ignored by this shader package and will be treated as Multi anyway.\n\nRed: Muscle slider influence.\nGreen: Diffuse brightness.\nBlue: Gloss strength.\nAlpha: \"Opacity\" (only used for the threshold).",
+            "Values": {
+                "3756477356": {
+                    "Label": "Color",
+                    "Description": "This is ignored by this shader package."
+                },
+                "2815623008": {
+                    "Label": "Multi (Mu, Di, Gl, Op)"
+                }
+            }
+        },
         "940355280": {
             "Label": "Skin Type",
             "Values": {

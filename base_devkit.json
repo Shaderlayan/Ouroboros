@@ -1,12 +1,13 @@
 {
     "ShaderKeys": {
         "4113354501": {
+            "Label": "Vertex Color Mode",
             "Values": {
                 "3756477356": {
-                    "Label": "0xDFE74BAC (Color)"
+                    "Label": "Color"
                 },
                 "2815623008": {
-                    "Label": "0xA7D2FF60 (Mask)"
+                    "Label": "Multi"
                 }
             }
         }
