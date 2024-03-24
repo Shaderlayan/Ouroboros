@@ -3,7 +3,7 @@
   "Name": "Material Development Kit",
   "Author": "Nylfae",
   "Description": "This provides Penumbra dev-kit files for various vanilla shaders, to make material authoring easier and more convenient.",
-  "Version": "1.0.0",
+  "Version": "1.1.0",
   "Website": "https://github.com/Shaderlayan",
   "ModTags": [
     "devkit",

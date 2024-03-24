@@ -1,4 +1,31 @@
 {
+    "ShaderKeys": {
+        "4113354501": {
+            "Label": "Vertex Color Mode: Color",
+            "Description": "This is ignored by this shader package and will be treated as Color anyway.\n\nRed, Green, Blue: Color.\nAlpha: Opacity.",
+            "Values": {
+                "3756477356": {
+                    "Label": "Color"
+                },
+                "2815623008": {
+                    "Label": "Multi",
+                    "Description": "This is ignored by this shader package."
+                }
+            }
+        }
+    },
+    "Samplers": {
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue: Opacity.\nAlpha: Color row index.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
+        },
+        "2320401078": {
+            "Label": "Multi (Di, Sp, Gl) Map",
+            "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue: Gloss strength.\nAlpha: Unused.",
+            "DefaultTexture": "chara/common/texture/white.tex"
+        }
+    },
     "Constants": {
         "740963549": [ {
             "Type": "Hidden"

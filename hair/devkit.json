@@ -1,17 +1,30 @@
 {
     "ShaderKeys": {
+        "4113354501": {
+            "Label": "Vertex Color Mode: Color",
+            "Description": "This is ignored by this shader package and will be treated as Color anyway.\n\nRed, Green, Blue: Color.\nAlpha: Opacity.",
+            "Values": {
+                "3756477356": {
+                    "Label": "Color"
+                },
+                "2815623008": {
+                    "Label": "Multi",
+                    "Description": "This is ignored by this shader package."
+                }
+            }
+        },
         "612525193": {
+            "Label": "Hair Type",
             "Values": {
                 "4156069230": {
-                    "Label": "0xF7B8956E (Hair)"
+                    "Label": "Hair"
                 },
                 "1851494160": {
-                    "Label": "0x6E5B8F10 (Face)"
+                    "Label": "Face"
                 }
             }
         }
     },
-    "Comment": "Vertex color semantics:\nRed, Green, Blue: Color.\nAlpha: Opacity.",
     "Samplers": {
         "207536625": {
             "Vary": [ "612525193" ],

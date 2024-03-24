@@ -1,52 +1,88 @@
 {
     "ShaderKeys": {
+        "4113354501": {
+            "Label": "Vertex Color Mode",
+            "Values": {
+                "3756477356": {
+                    "Label": "Color",
+                    "Description": "Red, Green, Blue: Color.\nAlpha: Opacity."
+                },
+                "2815623008": {
+                    "Label": "Multi (Di, Gl, Op)",
+                    "Description": "Red: Unused.\nGreen: Diffuse brightness.\nBlue: Gloss strength.\nAlpha: Opacity."
+                }
+            }
+        },
         "3054951514": {
+            "Label": "Texture Mode",
             "Values": {
                 "1556481461": {
-                    "Label": "0x5CC605B5"
+                    "Label": "Multi"
                 },
                 "581216959": {
-                    "Label": "0x22A4AABF (Simple)"
+                    "Label": "Simple"
                 },
                 "1611594207": {
-                    "Label": "0x600EF9DF (Compatibility)"
+                    "Label": "Compatibility (Diff/Spec)"
                 }
             }
         },
         "3531043187": {
+            "Label": "Decal Mode",
             "Values": {
                 "1111668802": {
-                    "Label": "0x4242B842 (Off)"
+                    "Label": "None"
                 },
                 "1480746461": {
-                    "Label": "0x584265DD (Alpha)"
+                    "Label": "Alpha (face paint)"
                 },
                 "4083110193": {
-                    "Label": "0xF35F5131"
+                    "Label": "Color (FC crest)"
                 }
             }
         },
         "3367837167": {
+            "Label": "Specular Map Mode",
+            "Description": "This is a setting of the Compatibility (Diff/Spec) Texture Mode, and has no effect outside of it.",
             "Values": {
                 "428675533": {
-                    "Label": "0x198D11CD"
+                    "Label": "Color"
                 },
                 "2687453224": {
-                    "Label": "0xA02F4828 (Mask)"
+                    "Label": "Multi"
                 }
             }
         }
     },
-    "Comment": {
-        "Vary": [ "4113354501" ],
-        "Selectors": {
-            "3756477356": 0,
-            "2815623008": 1
+    "Samplers": {
+        "207536625": {
+            "Label": "Normal Map",
+            "Description": "Red, Green: Standard tangent space normal map.\nBlue: Opacity.\nAlpha: Color row index.",
+            "DefaultTexture": "chara/common/texture/null_normal.tex"
         },
-        "Items": [
-            "Vertex color semantics:\nRed, Green, Blue: Color.",
-            "Vertex color semantics:\nRed: Diffuse Brightness?\nGreen: Specular Strength?\n\nThese are not confirmed yet.\n\nPlease contact the author of the Material Development Kit if you find out more about them."
-        ]
+        "2320401078": {
+            "Label": "Multi (Di, Sp, Gl) Map",
+            "Description": "Red: Diffuse brightness.\nGreen: Specular strength.\nBlue: Gloss strength.\nAlpha: Unused.",
+            "DefaultTexture": "chara/common/texture/white.tex"
+        },
+        "731504677": {
+            "Vary": [ "3367837167" ],
+            "Selectors": {
+                "428675533": 0,
+                "2687453224": 1
+            },
+            "Items": [
+                {
+                    "Label": "Specular Map",
+                    "DefaultTexture": "chara/common/texture/white.tex"
+                },
+                {
+                    "Label": "Multi (HG, Sp, Gl) Map",
+                    "Description": "Red: Hair-like gloss mode.\nGreen: Specular strength.\nBlue: Gloss strength.\nAlpha: Unused.",
+                    "DefaultTexture": "chara/common/texture/white.tex"
+                }
+            ]
+        }
     },
     "Constants": {
         "740963549": [ {
