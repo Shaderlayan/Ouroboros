@@ -19,7 +19,7 @@
 #endif
 
 #ifndef IRI_THETA_SKEW
-#if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T) || defined(SHPK_CHARACTERGLASS)
+#if defined(ALUM_LEVEL_3) || defined(ALUM_LEVEL_T) || defined(SHPK_CHARACTER) || defined(SHPK_CHARACTERGLASS)
 #define IRI_THETA_SKEW g_ScaleIridescence1.y
 #else
 #define IRI_THETA_SKEW 0
